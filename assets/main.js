@@ -12,20 +12,10 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }
 
-        // Функция для открытия плитки по очереди
-        const openTile = (index) => {
-            const tile = tileGrid.children[index];
-            tile.classList.add("fade-out");
-            setTimeout(() => {
-                tile.classList.add("star");
-            }, 1000); // 1000 мс для добавления класса "star"
-        };
-
-        // Открываем плитки с задержкой 1 секунда
-        openedTiles.forEach((tileIndex, i) => {
-            setTimeout(() => {
-                openTile(tileIndex);
-            }, i * 1000); // 1000 мс = 1 секунда
+        // Открываем плитки без анимации
+        openedTiles.forEach((tileIndex) => {
+            const tile = tileGrid.children[tileIndex];
+            tile.classList.add("star"); // Применяем класс "star" сразу
         });
     });
 });
