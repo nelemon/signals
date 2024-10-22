@@ -16,11 +16,14 @@ document.addEventListener("DOMContentLoaded", () => {
         openedTiles.forEach((tileIndex, i) => {
             setTimeout(() => {
                 const tile = tileGrid.children[tileIndex];
-                tile.classList.add("fade-out"); // Добавляем класс для исчезновения
+                tile.classList.add("fade-out"); // Добавляем класс для исчезновения плитки
+                
+                // После исчезновения плитки показываем звезду
                 setTimeout(() => {
-                    tile.classList.add("star"); // Меняем на звезду после исчезновения
+                    const star = tile.querySelector(".star");
+                    star.style.opacity = 1; // Делаем звезду видимой
                 }, 1000); // Дождаться окончания анимации исчезновения
-            }, i * 500); // Устанавливаем задержку 2 секунды между открытием плиток
+            }, i * 2000); // Устанавливаем задержку 2 секунды между открытием плиток
         });
     });
 });
