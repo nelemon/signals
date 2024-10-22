@@ -22,13 +22,12 @@ body {
 .tile {
     width: 50px;
     height: 50px;
-    background: url('signals/assets/plitka.png') no-repeat center center / cover;
+    background: url('/signals/assets/plitka.png') no-repeat center center / cover;
     cursor: pointer;
-    opacity: 1; /* Убедитесь, что плитки изначально непрозрачные */
 }
 
 .star {
-    background: url('signals/assets/star.png') no-repeat center center / cover;
+    background: url('/signals/assets/star.png') no-repeat center center / cover;
 }
 
 button {
@@ -37,4 +36,12 @@ button {
     cursor: pointer;
 }
 
-/* Удалены анимации */
+/* Анимация плавного исчезновения */
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+.fade-out {
+    animation: fadeOut 1s forwards; /* Анимация исчезновения */
+}
