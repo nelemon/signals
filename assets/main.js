@@ -1,47 +1,51 @@
 document.addEventListener("DOMContentLoaded", () => {
     const tileGrid = document.getElementById("tileGrid");
     const getSignalButton = document.getElementById("getSignalButton");
+    const totalTiles = 25;
+    const tilesToOpen = 5;
+    const tileFadeDuration = 1000; // Продолжительность анимации исчезновения
+    const tileDelay = 500; // Интервал между анимациями плиток
 
     function resetTiles() {
-        // Убираем все классы у плиток, чтобы вернуть их в исходное состояние
+        // Сбрасываем состояние всех плиток
         Array.from(tileGrid.children).forEach(tile => {
             tile.classList.remove("fade-out", "star");
         });
     }
 
     function toggleButtonState(isDisabled) {
-        // Переключение состояния кнопки
+        // Управляем состоянием кнопки
         getSignalButton.disabled = isDisabled;
-        getSignalButton.style.backgroundColor = isDisabled ? "#cccccc" : ""; // Темнеем, когда кнопка неактивна
+        getSignalButton.style.backgroundColor = isDisabled ? "#cccccc" : ""; // Меняем цвет кнопки
         getSignalButton.style.cursor = isDisabled ? "not-allowed" : "pointer";
     }
 
     getSignalButton.addEventListener("click", () => {
-        toggleButtonState(true); // Делаем кнопку неактивной
-        resetTiles(); // Сбрасываем плитки перед новым раундом
+        toggleButtonState(true); // Блокируем кнопку
+        resetTiles(); // Сбрасываем состояние плиток
 
-        // Случайно открываем 5 плиток
+        // Выбираем случайные 5 плиток
         let openedTiles = [];
-        while (openedTiles.length < 5) {
-            const randomIndex = Math.floor(Math.random() * 25);
+        while (openedTiles.length < tilesToOpen) {
+            const randomIndex = Math.floor(Math.random() * totalTiles);
             if (!openedTiles.includes(randomIndex)) {
                 openedTiles.push(randomIndex);
             }
         }
 
-        // Открываем плитки с задержкой
+        // Анимация исчезновения плиток
         openedTiles.forEach((tileIndex, i) => {
             setTimeout(() => {
                 const tile = tileGrid.children[tileIndex];
-                tile.classList.add("fade-out"); // Добавляем класс для исчезновения
+                tile.classList.add("fade-out"); // Запускаем анимацию исчезновения
                 setTimeout(() => {
-                    tile.classList.add("star"); // Меняем на звезду после исчезновения
-                    if (i === openedTiles.length - 1) {
-                        // Включаем кнопку, когда все плитки обработаны
+                    tile.classList.add("star"); // Заменяем на звезду после исчезновения
+                    if (i === tilesToOpen - 1) {
+                        // Активируем кнопку после завершения последней анимации
                         toggleButtonState(false);
                     }
-                }, 1000); // Ждём окончания анимации исчезновения
-            }, i * 500); // Устанавливаем задержку между плитками
+                }, tileFadeDuration); // Ждём завершения анимации исчезновения
+            }, i * tileDelay); // Интервал между анимациями плиток
         });
     });
 });
