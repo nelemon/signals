@@ -13,8 +13,9 @@
             <script>
                 for (let i = 0; i < 25; i++) {
                     document.write(`
-                        <div class="tile" data-index="${i}">
-                            <img src="/signals/assets/star.png" class="star-image" alt="Звезда">
+                        <div class="tile-container">
+                            <div class="tile" data-index="${i}"></div>
+                            <img src="assets/star.png" class="star-image" alt="Звезда">
                         </div>
                     `);
                 }
