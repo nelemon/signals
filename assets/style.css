@@ -1,31 +1,31 @@
-html, body {
-    height: 100%; /* Устанавливаем высоту body на 100% */
-    margin: 0; /* Убираем отступы */
-    overflow: hidden; /* Скрываем прокрутку */
-}
-
-.container {
+body {
+    background-color: #ffffff; /* Белый цвет */
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%; /* Занимаем 100% высоты */
-    width: 100%; /* Занимаем 100% ширины */
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    text-align: center;
 }
 
 .grid {
     display: grid;
-    grid-template-columns: repeat(5, 1fr); /* Используйте 1fr для равного распределения */
-    grid-template-rows: repeat(5, 1fr); /* Используйте 1fr для равного распределения */
+    grid-template-columns: repeat(5, 50px);
+    grid-template-rows: repeat(5, 50px);
     gap: 5px;
-    width: 100%; /* Занимаем 100% ширины */
-    height: 100%; /* Занимаем 100% высоты */
+    margin-bottom: 20px;
 }
 
 .tile {
-    background-color: lightgray; /* Временный цвет для тестирования */
+    width: 50px;
+    height: 50px;
+    background-color: lightgray;
+    /* background: url('assets/Plitka.png') no-repeat center center / cover; */
     cursor: pointer;
 }
-
 
 .star {
     background: url('assets/Star.png') no-repeat center center / cover;
