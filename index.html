@@ -1,36 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Telegram Mini App</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            padding: 20px;
-        }
-        button {
-            padding: 10px 20px;
-            font-size: 16px;
-            margin-top: 20px;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
+    <title>Mines Signal</title>
 </head>
 <body>
-    <h1>Welcome to Telegram Mini App</h1>
-    <p>Нажми на кнопку ниже для взаимодействия с ботом!</p>
-    <button onclick="sendData()">Send Data to Bot</button>
-
-    <script>
-        function sendData() {
-            // Проверяем, что Telegram Web App API доступен
-            if (window.Telegram.WebApp) {
-                Telegram.WebApp.sendData("Hello from Mini App!");
-            } else {
-                alert("Telegram Web App API недоступен.");
-            }
-        }
-    </script>
+    <div class="container">
+        <div class="grid" id="tileGrid">
+            <!-- Генерация 25 плиток -->
+            {% for i in range(25) %}
+                <div class="tile" data-index="{{ i }}"></div>
+            {% endfor %}
+        </div>
+        <button id="getSignalButton">Получить сигнал</button>
+    </div>
+    <script src="main.js"></script>
 </body>
 </html>
