@@ -9,10 +9,14 @@
 <body>
     <div class="container">
         <div class="grid" id="tileGrid">
-            <!-- Генерация 25 плиток -->
+            <!-- Генерация 25 плиток с звездами -->
             <script>
                 for (let i = 0; i < 25; i++) {
-                    document.write(`<div class="tile" data-index="${i}"></div>`);
+                    document.write(`
+                        <div class="tile" data-index="${i}">
+                            <div class="star"></div> <!-- Звезда -->
+                        </div>
+                    `);
                 }
             </script>
         </div>
