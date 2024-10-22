@@ -6,6 +6,12 @@ document.addEventListener("DOMContentLoaded", () => {
         // Деактивируем кнопку
         getSignalButton.disabled = true;
 
+        // Сбрасываем состояние плиток перед новым запуском
+        Array.from(tileGrid.children).forEach(tileContainer => {
+            const tile = tileContainer.querySelector('.tile');
+            tile.classList.remove("fade-out"); // Убираем класс исчезновения
+        });
+
         // Случайно открываем 5 плиток
         let openedTiles = [];
         while (openedTiles.length < 5) {
