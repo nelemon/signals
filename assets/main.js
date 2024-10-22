@@ -18,14 +18,14 @@ document.addEventListener("DOMContentLoaded", () => {
             tile.classList.add("fade-out");
             setTimeout(() => {
                 tile.classList.add("star");
-            }, 500); // 500 мс для добавления класса "star" после исчезновения
+            }, 1000); // 1000 мс для добавления класса "star"
         };
 
         // Открываем плитки с задержкой 1 секунда
         openedTiles.forEach((tileIndex, i) => {
             setTimeout(() => {
                 openTile(tileIndex);
-            }, i * 1000); // 1000 мс = 1 секунда
+            }, i * 500); // 1000 мс = 1 секунда
         });
     });
 });
