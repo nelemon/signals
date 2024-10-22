@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/style.css"> <!-- Обновленный путь -->
+    <link rel="stylesheet" href="assets/style.css">
     <title>Signals</title>
 </head>
 <body>
@@ -12,12 +12,7 @@
             <!-- Генерация 25 плиток -->
             <script>
                 for (let i = 0; i < 25; i++) {
-                    document.write(`
-                        <div class="tile-container">
-                            <div class="tile" data-index="${i}"></div>
-                            <img src="/signals/assets/star.png" class="star-image" alt="Звезда">
-                        </div>
-                    `);
+                    document.write(`<div class="tile" data-index="${i}"></div>`);
                 }
             </script>
         </div>
@@ -25,6 +20,6 @@
             <img src="/signals/assets/getSignal.png" alt="Получить сигнал">
         </button>
     </div>
-    <script src="assets/main.js"></script> <!-- Обновленный путь -->
+    <script src="assets/main.js"></script>
 </body>
 </html>
