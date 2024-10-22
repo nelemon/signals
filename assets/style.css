@@ -24,6 +24,7 @@ body {
     height: 50px;
     background: url('signals/assets/plitka.png') no-repeat center center / cover;
     cursor: pointer;
+    opacity: 1; /* Убедитесь, что плитки изначально непрозрачные */
 }
 
 .star {
@@ -36,12 +37,4 @@ button {
     cursor: pointer;
 }
 
-/* Анимация плавного исчезновения */
-@keyframes fadeOut {
-    from { opacity: 1; }
-    to { opacity: 0; }
-}
-
-.fade-out {
-    animation: fadeOut 1s forwards;
-}
+/* Удалены анимации */
