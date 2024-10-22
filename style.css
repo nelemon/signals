@@ -1,5 +1,5 @@
 body {
-    background-color: #ffffff;
+    background-color: #ffffff; /* Белый цвет */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -36,7 +36,7 @@ button {
     cursor: pointer;
 }
 
-/* Добавляем анимацию плавного исчезновения */
+/* Анимация плавного исчезновения */
 @keyframes fadeOut {
     from { opacity: 1; }
     to { opacity: 0; }
