@@ -58,3 +58,34 @@ body {
     opacity: 0;
     pointer-events: none; /* Чтобы избежать взаимодействия с исчезающими плитками */
 }
+
+/* Стили для кнопки с изображением */
+button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+/* Стили для изображения кнопки */
+button img {
+    width: 150px; /* Установите нужные размеры для изображения */
+    height: auto;
+    display: block;
+}
+
+/* Стили для неактивного состояния кнопки */
+button:disabled img {
+    opacity: 0.5; /* Прозрачность для темного эффекта */
+    cursor: not-allowed;
+}
+
+/* Анимация плавного исчезновения */
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+.fade-out {
+    animation: fadeOut 1s forwards; /* Анимация исчезновения */
+}
