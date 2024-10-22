@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const getSignalButton = document.getElementById("getSignalButton");
 
     getSignalButton.addEventListener("click", () => {
+        console.log("Кнопка нажата"); // Для отладки
         // Деактивируем кнопку
         getSignalButton.disabled = true;
 
