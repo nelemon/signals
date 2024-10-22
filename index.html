@@ -3,19 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Mines Signal</title>
+    <link rel="stylesheet" href="assets/style.css">
+    <title>Signals</title>
 </head>
 <body>
     <div class="container">
         <div class="grid" id="tileGrid">
             <!-- Генерация 25 плиток -->
-            {% for i in range(25) %}
-                <div class="tile" data-index="{{ i }}"></div>
-            {% endfor %}
+            <script>
+                for (let i = 0; i < 25; i++) {
+                    document.write(`<div class="tile" data-index="${i}"></div>`);
+                }
+            </script>
         </div>
         <button id="getSignalButton">Получить сигнал</button>
     </div>
-    <script src="main.js"></script>
+    <script src="assets/main.js"></script>
 </body>
 </html>
