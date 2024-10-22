@@ -2,23 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const tileGrid = document.getElementById("tileGrid");
     const getSignalButton = document.getElementById("getSignalButton");
 
-    // Функция для перехода в полноэкранный режим
-    function openFullscreen() {
-        if (tileGrid.requestFullscreen) {
-            tileGrid.requestFullscreen();
-        } else if (tileGrid.mozRequestFullScreen) { // Firefox
-            tileGrid.mozRequestFullScreen();
-        } else if (tileGrid.webkitRequestFullscreen) { // Chrome, Safari and Opera
-            tileGrid.webkitRequestFullscreen();
-        } else if (tileGrid.msRequestFullscreen) { // IE/Edge
-            tileGrid.msRequestFullscreen();
-        }
-    }
-
     getSignalButton.addEventListener("click", () => {
-        // Переход в полноэкранный режим
-        openFullscreen();
-
         // Случайно открываем 5 плиток
         let openedTiles = [];
         while (openedTiles.length < 5) {
