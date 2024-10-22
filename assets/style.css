@@ -25,6 +25,7 @@ body {
     height: 50px;
     background: url('/signals/assets/plitka.png') no-repeat center center / cover;
     cursor: pointer;
+    transition: opacity 1s, visibility 1s;
 }
 
 /* Скрываем изображение звезды по умолчанию */
@@ -41,6 +42,12 @@ body {
 /* Отображаем звезду, когда плитка имеет класс fade-out */
 .tile.fade-out .star-image {
     opacity: 1;
+}
+
+/* Исчезновение плитки */
+.tile.fade-out {
+    opacity: 0;
+    visibility: hidden;
 }
 
 /* Стили для кнопки с изображением */
@@ -62,14 +69,4 @@ button img {
 button:disabled img {
     opacity: 0.5; /* Прозрачность для темного эффекта */
     cursor: not-allowed;
-}
-
-/* Анимация плавного исчезновения */
-@keyframes fadeOut {
-    from { opacity: 1; }
-    to { opacity: 0; }
-}
-
-.fade-out {
-    animation: fadeOut 1s forwards; /* Анимация исчезновения */
 }
