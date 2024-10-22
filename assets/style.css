@@ -24,6 +24,8 @@ body {
     height: 50px;
     background: url('assets/Plitka.png') no-repeat center center / cover;
     cursor: pointer;
+    opacity: 1; /* Убедитесь, что плитки изначально непрозрачные */
+    transition: opacity 0.5s; /* Плавный переход для прозрачности */
 }
 
 .star {
@@ -43,5 +45,5 @@ button {
 }
 
 .fade-out {
-    animation: fadeOut 0.5s forwards; /* Изменено на 0.5 секунды */
+    animation: fadeOut 0.5s forwards; /* Анимация исчезновения */
 }
