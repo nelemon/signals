@@ -24,10 +24,18 @@ body {
     height: 50px;
     background: url('/signals/assets/plitka.png') no-repeat center center / cover;
     cursor: pointer;
+    position: relative; /* Для позиционирования звезды */
 }
 
 .star {
     background: url('/signals/assets/star.png') no-repeat center center / cover;
+    width: 50px; /* Ширина звезды */
+    height: 50px; /* Высота звезды */
+    position: absolute; /* Позиционирование */
+    top: 0;
+    left: 0;
+    opacity: 0; /* Звезда изначально невидима */
+    transition: opacity 1s; /* Плавное появление звезды */
 }
 
 /* Стили для кнопки с изображением */
