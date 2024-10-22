@@ -38,12 +38,4 @@ button {
     cursor: pointer;
 }
 
-/* Анимация плавного исчезновения */
-@keyframes fadeOut {
-    from { opacity: 1; }
-    to { opacity: 0; }
-}
 
-.fade-out {
-    animation: fadeOut 0.5s forwards; /* Анимация исчезновения */
-}
