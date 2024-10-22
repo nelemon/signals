@@ -24,14 +24,15 @@ body {
     height: 50px;
     background: url('assets/Plitka.png') no-repeat center center / cover;
     cursor: pointer;
-    position: relative; /* Добавлено для позиционирования звезды */
+    position: relative; /* Позволяет позиционировать звезду относительно плитки */
+    overflow: hidden; /* Прячем звезду, пока плитка не исчезнет */
 }
 
 .star {
     background: url('assets/Star.png') no-repeat center center / cover;
     width: 50px; /* Ширина звезды */
     height: 50px; /* Высота звезды */
-    position: absolute; /* Позиционирование звезды внутри плитки */
+    position: absolute; /* Звезда позиционируется относительно плитки */
     top: 0;
     left: 0;
     opacity: 0; /* Изначально звезда невидима */
