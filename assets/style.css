@@ -22,12 +22,20 @@ body {
 .tile {
     width: 50px;
     height: 50px;
-    background: url('/signals/assets/plitka.png') no-repeat center center / cover;
+    background: url('assets/Plitka.png') no-repeat center center / cover;
     cursor: pointer;
+    position: relative; /* Добавлено для позиционирования звезды */
 }
 
 .star {
-    background: url('/signals/assets/star.png') no-repeat center center / cover;
+    background: url('assets/Star.png') no-repeat center center / cover;
+    width: 50px; /* Ширина звезды */
+    height: 50px; /* Высота звезды */
+    position: absolute; /* Позиционирование звезды внутри плитки */
+    top: 0;
+    left: 0;
+    opacity: 0; /* Изначально звезда невидима */
+    transition: opacity 0.5s; /* Плавный переход для появления звезды */
 }
 
 button {
@@ -36,12 +44,12 @@ button {
     cursor: pointer;
 }
 
-/* Анимация плавного исчезновения */
+/* Анимация плавного исчезновения плиток */
 @keyframes fadeOut {
     from { opacity: 1; }
     to { opacity: 0; }
 }
 
 .fade-out {
-    animation: fadeOut 1s forwards; /* Анимация исчезновения */
+    animation: fadeOut 1s forwards; /* Анимация исчезновения плиток */
 }
