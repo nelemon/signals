@@ -20,14 +20,27 @@ body {
 }
 
 .tile {
+    position: relative;
     width: 50px;
     height: 50px;
     background: url('/signals/assets/plitka.png') no-repeat center center / cover;
     cursor: pointer;
 }
 
-.star {
-    background: url('/signals/assets/star.png') no-repeat center center / cover;
+/* Скрываем изображение звезды по умолчанию */
+.star-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50px;
+    height: 50px;
+    opacity: 0;
+    transition: opacity 1s;
+}
+
+/* Отображаем звезду, когда плитка исчезает */
+.fade-out + .star-image {
+    opacity: 1;
 }
 
 /* Стили для кнопки с изображением */
