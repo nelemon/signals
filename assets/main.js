@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
         openedTiles.forEach((tileIndex, i) => {
             setTimeout(() => {
                 openTile(tileIndex);
-            }, i * 1000); // 1000 мс = 1 секунда
+            }, i * 500); // 1000 мс = 1 секунда
         });
     });
 });
