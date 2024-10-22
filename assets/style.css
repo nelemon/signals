@@ -38,8 +38,8 @@ body {
     transition: opacity 1s;
 }
 
-/* Отображаем звезду, когда плитка исчезает */
-.fade-out + .star-image {
+/* Отображаем звезду, когда плитка имеет класс fade-out */
+.tile.fade-out .star-image {
     opacity: 1;
 }
 
