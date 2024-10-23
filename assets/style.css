@@ -23,11 +23,12 @@ body {
     border-radius: 10px; /* Закругление углов (по желанию) */
 }
 
+/* Настройки для сетки плиток */
 .grid {
     display: grid;
-    grid-template-columns: repeat(5, 50px);
-    grid-template-rows: repeat(5, 50px);
-    gap: 5px;
+    grid-template-columns: repeat(5, 50px); /* 5 колонок по 50px */
+    grid-template-rows: repeat(5, 50px); /* 5 рядов по 50px */
+    gap: 5px; /* Промежуток между плитками */
     margin-bottom: 20px;
 }
 
@@ -41,9 +42,9 @@ body {
 
 .stars-container {
     display: grid;
-    grid-template-columns: repeat(5, 50px);
-    grid-template-rows: repeat(5, 50px);
-    gap: 5px;
+    grid-template-columns: repeat(5, 50px); /* 5 колонок по 50px */
+    grid-template-rows: repeat(5, 50px); /* 5 рядов по 50px */
+    gap: 5px; /* Промежуток между звездами */
     position: absolute; /* Позиционируем контейнер с звездами */
     top: 0; /* Смотрим, чтобы звезды находились на месте плиток */
     left: 0;
