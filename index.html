@@ -9,11 +9,12 @@
 <body>
     <div class="container">
         <div class="grid" id="tileGrid">
-            <!-- Генерация 25 плиток и 25 звезд -->
+            <!-- Генерация 25 плиток -->
             <script>
                 for (let i = 0; i < 25; i++) {
-                    document.write(`<div class="tile" data-index="${i}"></div>`);
-                    document.write(`<div class="star" style="display: none;"></div>`); // Скрытые звезды
+                    document.write(`<div class="tile" data-index="${i}">
+                        <div class="star"></div>
+                    </div>`);
                 }
             </script>
         </div>
