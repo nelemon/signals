@@ -1,5 +1,5 @@
 body {
-    background-color: #ffffff; /* Белый цвет */
+    background-color: #ffffff; /* Белый цвет фона */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -46,13 +46,16 @@ body {
 }
 
 .star {
-    width: 48px; /* Размер звезды */
-    height: 46px; /* Размер звезды */
+    width: 48px; /* Ширина звезды */
+    height: 46px; /* Высота звезды */
     background: url('/signals/assets/star.png') no-repeat center center / cover; /* Фоновое изображение звезды */
     opacity: 0; /* Скрываем звезду по умолчанию */
     transition: opacity 1s; /* Плавный переход для появления звезды */
-    align-self: center; /* Центрируем звезды по вертикали в клетке */
-    justify-self: center; /* Центрируем звезды по горизонтали в клетке */
+    position: absolute; /* Позиционирование относительно плитки */
+    top: 50%; /* Смещение звезды вниз на 50% */
+    left: 50%; /* Смещение звезды вправо на 50% */
+    transform: translate(-50%, -50%); /* Центрируем звезду по обеим осям */
+    z-index: 0; /* Устанавливаем звезды ниже плиток */
 }
 
 /* Стили для кнопки с изображением */
