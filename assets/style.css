@@ -1,5 +1,5 @@
 body {
-    background-color: #ffffff; /* Белый цвет */
+    background-color: #ffffff; /* Белый цвет фона */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -14,8 +14,8 @@ body {
 
 .grid {
     display: grid;
-    grid-template-columns: repeat(5, 50px); /* 5 колонок плиток */
-    grid-template-rows: repeat(5, 50px); /* 5 строк плиток */
+    grid-template-columns: repeat(5, 100px); /* 5 колонок плиток */
+    grid-template-rows: repeat(5, 100px); /* 5 строк плиток */
     gap: 5px; /* Отступы между плитками */
     margin-bottom: 20px;
     padding: 21px; /* Отступ от внутренней границы фона до плиток */
@@ -39,26 +39,23 @@ body {
     width: 100%; /* Ширина контейнера со звездами */
     height: 100%; /* Высота контейнера со звездами */
     display: grid; /* Сетка для размещения звезд */
-    grid-template-columns: repeat(5, 50px); /* Колонки */
-    grid-template-rows: repeat(5, 50px); /* Строки */
+    grid-template-columns: repeat(5, 100px); /* Колонки */
+    grid-template-rows: repeat(5, 100px); /* Строки */
     gap: 5px; /* Отступы между звездами */
     pointer-events: none; /* Клики проходят через звезды */
 }
 
 .star {
-    width: 96px; /* Размер звезды */
-    height: 91px; /* Размер звезды */
+    width: 96px; /* Ширина звезды */
+    height: 91px; /* Высота звезды */
     background: url('/signals/assets/star.png') no-repeat center center / cover; /* Фоновое изображение звезды */
     opacity: 0; /* Скрываем звезду по умолчанию */
     transition: opacity 1s; /* Плавный переход для появления звезды */
-    position: relative; /* Позиционирование относительно плитки */
-    align-self: center; /* Центрируем звезды по вертикали в клетке */
-    justify-self: center; /* Центрируем звезды по горизонтали в клетке */
+    position: absolute; /* Позиционирование относительно плитки */
     top: 50%; /* Смещение звезды вниз на 50% */
     left: 50%; /* Смещение звезды вправо на 50% */
     transform: translate(-50%, -50%); /* Центрируем звезду по обеим осям */
 }
-
 
 /* Стили для кнопки с изображением */
 button {
