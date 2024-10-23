@@ -4,8 +4,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const starsContainer = document.querySelector('.stars-container');
     const totalTiles = 25; // Общее количество плиток
     const tilesToOpen = 5; // Количество плиток, которые будут открыты
-    const tileFadeDuration = 1000; // Продолжительность анимации исчезновения
-    const tileDelay = 500; // Интервал между анимациями плиток
     const buttonInactiveDuration = 2000; // 2 секунды неактивности кнопки
 
     // Функция сброса состояния плиток и звезд
@@ -46,34 +44,27 @@ document.addEventListener("DOMContentLoaded", () => {
         resetTiles(); // Сбрасываем состояние плиток и звезд
         toggleButtonState(true); // Блокируем кнопку
 
-        const openedTilesThisRound = getRandomTiles();
+        let openedTilesThisRound;
 
-        // Проверка, что всегда открываются 5 плиток
-        if (openedTilesThisRound.length !== tilesToOpen) {
-            console.error("Ошибка: открыто не 5 плиток:", openedTilesThisRound);
-            return; // Завершаем выполнение, если не открыто 5 плиток
-        }
+        // Строгая проверка, чтобы убедиться, что всегда открываются 5 плиток
+        do {
+            openedTilesThisRound = getRandomTiles();
+        } while (openedTilesThisRound.length < tilesToOpen); // Повторяем, пока не выберем 5 плиток
 
         console.log("Открытые плитки:", openedTilesThisRound); // Отладочное сообщение
 
         // Анимация исчезновения плиток и появления звезд
-        openedTilesThisRound.forEach((tileIndex, i) => {
-            setTimeout(() => {
-                const tile = tileGrid.children[tileIndex];
-                tile.classList.add("fade-out"); // Запускаем анимацию исчезновения
-
-                // Получаем звезду с тем же индексом
-                const star = starsContainer.children[tileIndex];
-                star.style.opacity = 1; // Показываем звезду
-                star.classList.add("show-star"); // Добавляем класс для анимации появления звезды
-
-                if (i === tilesToOpen - 1) {
-                    // После завершения последней анимации ждем 2 секунды перед активацией кнопки
-                    setTimeout(() => {
-                        toggleButtonState(false); // Активируем кнопку
-                    }, buttonInactiveDuration);
-                }
-            }, i * tileDelay); // Интервал между анимациями плиток
+        openedTilesThisRound.forEach((tileIndex) => {
+            const tile = tileGrid.children[tileIndex];
+            tile.classList.add("fade-out"); // Запускаем анимацию исчезновения
+            const star = starsContainer.children[tileIndex]; // Получаем звезду с тем же индексом
+            star.style.opacity = 1; // Показываем звезду
+            star.classList.add("show-star"); // Добавляем класс для анимации появления звезды
         });
+
+        // Ждем 2 секунды перед активацией кнопки
+        setTimeout(() => {
+            toggleButtonState(false); // Активируем кнопку
+        }, buttonInactiveDuration);
     });
 });
