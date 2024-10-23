@@ -8,6 +8,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const tileDelay = 500; // Интервал между анимациями плиток
     const buttonInactiveDuration = 2000; // 2 секунды неактивности кнопки
 
+    // Хранит уже открытые плитки
+    let openedTiles = new Set();
+
     // Функция сброса состояния плиток и звезд
     function resetTiles() {
         Array.from(tileGrid.children).forEach(tile => {
@@ -33,7 +36,9 @@ document.addEventListener("DOMContentLoaded", () => {
         const indexes = new Set();
         while (indexes.size < count) {
             const randomIndex = Math.floor(Math.random() * max);
-            indexes.add(randomIndex);
+            if (!openedTiles.has(randomIndex)) { // Проверяем, что индекс еще не открыт
+                indexes.add(randomIndex);
+            }
         }
         return Array.from(indexes);
     }
@@ -43,11 +48,22 @@ document.addEventListener("DOMContentLoaded", () => {
         resetTiles(); // Сбрасываем состояние плиток и звезд
         toggleButtonState(true); // Блокируем кнопку
 
-        // Получаем уникальные индексы, доступные для открытия
-        const availableTiles = Array.from({ length: totalTiles }, (_, i) => i); // Все плитки
+        // Получаем доступные плитки
+        const availableTiles = Array.from({ length: totalTiles }, (_, i) => i).filter(i => !openedTiles.has(i));
 
-        // Получаем 5 уникальных индексов
+        // Проверяем, достаточно ли плиток для открытия
+        if (availableTiles.length < tilesToOpen) {
+            console.warn("Недостаточно плиток для открытия, сбрасываем открытые плитки."); // Отладочное сообщение
+            openedTiles.clear(); // Сбрасываем открытые плитки
+            return; // Завершаем выполнение
+        }
+
         const openedTilesThisRound = getUniqueRandomIndexes(tilesToOpen, availableTiles.length);
+
+        // Добавляем открытые плитки в общий список
+        openedTiles = new Set([...openedTiles, ...openedTilesThisRound]);
+
+        console.log("Открытые плитки:", openedTilesThisRound); // Отладочное сообщение
 
         // Анимация исчезновения плиток и появления звезд
         openedTilesThisRound.forEach((tileIndex, i) => {
