@@ -51,9 +51,9 @@ body {
     background: url('/signals/assets/star.png') no-repeat center center / cover; /* Фоновое изображение звезды */
     opacity: 0; /* Скрываем звезду по умолчанию */
     transition: opacity 1s; /* Плавный переход для появления звезды */
-    position: relative; /* Позиционируем звезды относительно их контейнера */
-    top: 0; /* Убираем смещение вниз */
-    left: 0; /* Убираем смещение вбок */
+    position: absolute; /* Меняем на абсолютное позиционирование */
+    top: 0; /* Ставим в верхнюю часть контейнера */
+    left: 0; /* Ставим в левую часть контейнера */
     display: flex; /* Используем flexbox для центрирования */
     justify-content: center; /* Центрируем по горизонтали */
     align-items: center; /* Центрируем по вертикали */
