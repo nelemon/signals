@@ -17,8 +17,8 @@ body {
     grid-template-columns: repeat(5, 50px); /* 5 колонок плиток */
     grid-template-rows: repeat(5, 50px); /* 5 строк плиток */
     gap: 5px; /* Отступы между плитками */
-    margin-bottom: 20px;
-    padding: 21px; /* Отступ от внутренней границы фона до плиток */
+    margin-bottom: 0px;
+    padding: 0px; /* Отступ от внутренней границы фона до плиток */
     background: url('/signals/assets/backgroundPlitki.png') no-repeat center center / cover; /* Фоновое изображение */
     border-radius: 10px; /* Скругление углов фона */
 }
