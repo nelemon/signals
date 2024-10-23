@@ -1,5 +1,5 @@
 body {
-    background-color: #ffffff; /* Белый цвет фона */
+    background-color: #ffffff; /* Белый цвет */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -31,18 +31,28 @@ body {
     position: relative; /* Для правильного выравнивания звезд внутри плиток */
 }
 
-/* Звезды */
+/* Контейнер для звезд с абсолютным позиционированием */
+.stars-container {
+    position: absolute; /* Позиционируем контейнер со звездами под плитками */
+    top: 0; /* Начинаем от верхнего края */
+    left: 0;
+    width: 100%; /* Ширина контейнера со звездами */
+    height: 100%; /* Высота контейнера со звездами */
+    display: grid; /* Сетка для размещения звезд */
+    grid-template-columns: repeat(5, 50px); /* Колонки */
+    grid-template-rows: repeat(5, 50px); /* Строки */
+    gap: 5px; /* Отступы между звездами */
+    pointer-events: none; /* Клики проходят через звезды */
+}
+
 .star {
-    width: 48px; /* Ширина звезды */
-    height: 46px; /* Высота звезды */
+    width: 50px; /* Размер звезды */
+    height: 50px; /* Размер звезды */
     background: url('/signals/assets/star.png') no-repeat center center / cover; /* Фоновое изображение звезды */
     opacity: 0; /* Скрываем звезду по умолчанию */
     transition: opacity 1s; /* Плавный переход для появления звезды */
-    position: absolute; /* Позиционирование относительно плитки */
-    top: 50%; /* Смещение звезды вниз на 50% */
-    left: 50%; /* Смещение звезды вправо на 50% */
-    transform: translate(-50%, -50%); /* Центрируем звезду по обеим осям */
-    z-index: -1; /* Устанавливаем звезды ниже плиток */
+    align-self: center; /* Центрируем звезды по вертикали в клетке */
+    justify-self: center; /* Центрируем звезды по горизонтали в клетке */
 }
 
 /* Стили для кнопки с изображением */
@@ -51,8 +61,6 @@ button {
     border: none; /* Без границ */
     padding: 0; /* Без отступов */
     cursor: pointer; /* Курсор при наведении на кнопку */
-    position: relative; /* Позиционирование кнопки относительно контейнера */
-    z-index: 1; /* Устанавливаем кнопку выше других элементов */
 }
 
 button img {
