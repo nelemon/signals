@@ -27,33 +27,33 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     getSignalButton.addEventListener("click", () => {
-        toggleButtonState(true); // Блокируем кнопку
-        resetTiles(); // Сбрасываем состояние плиток
+    toggleButtonState(true); // Блокируем кнопку
+    resetTiles(); // Сбрасываем состояние плиток
 
-        // Выбираем случайные 5 плиток
-        let openedTiles = [];
-        while (openedTiles.length < tilesToOpen) {
-            const randomIndex = Math.floor(Math.random() * totalTiles);
-            if (!openedTiles.includes(randomIndex)) {
-                openedTiles.push(randomIndex);
-            }
+    // Выбираем случайные 5 плиток
+    let openedTiles = [];
+    while (openedTiles.length < tilesToOpen) {
+        const randomIndex = Math.floor(Math.random() * totalTiles);
+        if (!openedTiles.includes(randomIndex)) {
+            openedTiles.push(randomIndex);
         }
+    }
 
-        // Анимация исчезновения плиток
-        openedTiles.forEach((tileIndex, i) => {
+    // Анимация исчезновения плиток
+    openedTiles.forEach((tileIndex, i) => {
+        setTimeout(() => {
+            const tile = tileGrid.children[tileIndex];
+            tile.classList.add("fade-out"); // Запускаем анимацию исчезновения
             setTimeout(() => {
-                const tile = tileGrid.children[tileIndex];
-                tile.classList.add("fade-out"); // Запускаем анимацию исчезновения
-                setTimeout(() => {
-                    tile.classList.add("star"); // Добавляем класс star к плитке
-                    const star = starsContainer.children[tileIndex]; // Получаем звезду с тем же индексом
-                    star.style.opacity = 1; // Показываем звезду
-                    if (i === tilesToOpen - 1) {
-                        // Активируем кнопку после завершения последней анимации
-                        toggleButtonState(false);
-                    }
-                }, tileFadeDuration); // Ждём завершения анимации исчезновения
-            }, i * tileDelay); // Интервал между анимациями плиток
-        });
+                tile.classList.add("star"); // Добавляем класс star к плитке
+                const star = starsContainer.children[tileIndex]; // Получаем звезду с тем же индексом
+                star.style.opacity = 1; // Показываем звезду без анимации
+                if (i === tilesToOpen - 1) {
+                    // Активируем кнопку после завершения последней анимации
+                    toggleButtonState(false);
+                }
+            }, tileFadeDuration); // Ждём завершения анимации исчезновения
+        }, i * tileDelay); // Интервал между анимациями плиток
     });
 });
+
