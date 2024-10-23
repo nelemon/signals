@@ -1,5 +1,5 @@
 body {
-    background-color: #0D0924; /* Фон всего сайта */
+    background-color: #ffffff; /* Белый цвет */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -8,26 +8,20 @@ body {
 }
 
 .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
+    position: relative; /* Для позиционирования дочерних элементов */
+    text-align: center;
 }
 
-.grid-container {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1; /* Контейнер с плитками выше фона */
-}
-
+/* Фон, который будет под плитками */
 .background {
-    position: absolute;
-    width: calc(5 * 50px + 4 * 5px + 60px); /* Фон немного больше по ширине и высоте */
-    height: calc(5 * 50px + 4 * 5px + 60px); 
-    background: url('/signals/assets/backgroundPlitki.png') no-repeat center center / cover;
-    z-index: -1; /* Фон позади плиток */
+    position: absolute; /* Позиционируем фон абсолютно */
+    top: -20px; /* Устанавливаем фон на 20px выше плиток */
+    left: -20px; /* Устанавливаем фон на 20px левее плиток */
+    width: calc(5 * 50px + 4 * 5px + 40px); /* Ширина фона: 5 плиток по 50px + 4 промежутка по 5px + 40px (20px с каждой стороны) */
+    height: calc(5 * 50px + 4 * 5px + 40px); /* Высота фона: 5 плиток по 50px + 4 промежутка по 5px + 40px (20px сверху и снизу) */
+    background-color: rgba(192, 192, 192, 0.5); /* Серый фон с небольшой прозрачностью */
+    z-index: -1; /* Помещаем фон за плитками */
+    border-radius: 10px; /* Углы фона (по желанию) */
 }
 
 .grid {
@@ -35,7 +29,15 @@ body {
     grid-template-columns: repeat(5, 50px);
     grid-template-rows: repeat(5, 50px);
     gap: 5px;
-    z-index: 1; /* Плитки выше фона */
+    margin-bottom: 20px; /* Отступ снизу */
+}
+
+.tile {
+    position: relative; /* Добавлено для позиционирования звезды */
+    width: 50px;
+    height: 50px;
+    background: url('/signals/assets/plitka.png') no-repeat center center / cover;
+    cursor: pointer;
 }
 
 .stars-container {
@@ -43,35 +45,61 @@ body {
     grid-template-columns: repeat(5, 50px);
     grid-template-rows: repeat(5, 50px);
     gap: 5px;
-    position: absolute;
-    top: 0;
+    position: absolute; /* Позиционируем контейнер с звездами */
+    top: 0; /* Смотрим, чтобы звезды находились на месте плиток */
     left: 0;
-    z-index: 2; /* Звёзды выше плиток */
 }
 
+/* Уменьшенные звезды */
 .star {
-    position: absolute;
-    width: 40px; /* Звезды на 20% меньше */
-    height: 40px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    width: 40px; /* Размер звезды после уменьшения на 20% */
+    height: 40px; /* Размер звезды после уменьшения на 20% */
     background: url('/signals/assets/star.png') no-repeat center center / cover;
-    opacity: 0;
-    transition: opacity 1s;
+    opacity: 0; /* Скрываем звезду по умолчанию */
+    transition: opacity 1s; /* Плавный переход для появления звезды */
+    position: relative; /* Относительное позиционирование для центровки */
+    top: 5px; /* Сдвиг вниз, чтобы звезда была по центру плитки */
+    left: 5px; /* Сдвиг вправо, чтобы звезда была по центру плитки */
 }
 
+/* Стили для кнопки с изображением */
 button {
-    margin-top: 40px; /* Сдвигаем кнопку ниже плиток */
     background: none;
     border: none;
     padding: 0;
     cursor: pointer;
-    z-index: 3; /* Кнопка выше всего */
+    margin-top: 30px; /* Смещение кнопки вниз на 30px */
 }
 
+/* Стили для изображения кнопки */
 button img {
-    width: 150px;
+    width: 150px; /* Установите нужные размеры для изображения */
     height: auto;
     display: block;
+}
+
+/* Стили для неактивного состояния кнопки */
+button:disabled img {
+    opacity: 0.5; /* Прозрачность для темного эффекта */
+    cursor: not-allowed;
+}
+
+/* Анимация плавного появления звезд */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.show-star {
+    animation: fadeIn 1s forwards; /* Анимация появления */
+}
+
+/* Анимация плавного исчезновения */
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+.fade-out {
+    animation: fadeOut 1s forwards; /* Анимация исчезновения */
 }
