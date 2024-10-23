@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Функция сброса состояния плиток и звезд
     function resetTiles() {
         Array.from(tileGrid.children).forEach(tile => {
-            tile.classList.remove("fade-out");
+            tile.classList.remove("fade-out", "star");
         });
 
         // Скрываем звезды сразу
