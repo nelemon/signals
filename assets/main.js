@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const tilesToOpen = 5; // Количество плиток, которые будут открыты
     const tileFadeDuration = 1000; // Продолжительность анимации исчезновения
     const tileDelay = 500; // Интервал между анимациями плиток
-    const buttonInactiveDuration = 5000; // 5 секунд неактивности кнопки
+    const buttonInactiveDuration = 2000; // 5 секунд неактивности кнопки
 
     // Функция сброса состояния плиток и звезд
     function resetTiles() {
