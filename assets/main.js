@@ -45,21 +45,14 @@ document.addEventListener("DOMContentLoaded", () => {
         toggleButtonState(true); // Блокируем кнопку
 
         // Создаем массив всех доступных плиток
-        const availableTiles = Array.from({ length: totalTiles }, (_, i) => i).filter(i => !openedTiles.has(i));
+        const availableTiles = Array.from({ length: totalTiles }, (_, i) => i);
 
-        // Проверяем, достаточно ли плиток для открытия
-        if (availableTiles.length < tilesToOpen) {
-            console.warn("Недостаточно плиток для открытия, сбрасываем открытые плитки."); // Отладочное сообщение
-            openedTiles.clear(); // Сбрасываем открытые плитки
-            return; // Завершаем выполнение
-        }
-
-        // Перемешиваем доступные плитки
+        // Перемешиваем все плитки
         shuffle(availableTiles);
 
         // Берем первые 5 уникальных индексов
         const openedTilesThisRound = availableTiles.slice(0, tilesToOpen);
-        
+
         // Добавляем открытые плитки в общий список
         openedTiles = new Set([...openedTiles, ...openedTilesThisRound]);
 
