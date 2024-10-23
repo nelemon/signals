@@ -12,7 +12,18 @@ body {
     text-align: center;
 }
 
-
+.grid {
+    display: grid;
+    grid-template-columns: repeat(5, 50px); /* 5 колонок плиток */
+    grid-template-rows: repeat(5, 50px); /* 5 строк плиток */
+    gap: 5px; /* Отступы между плитками */
+    margin-bottom: 20px;
+    padding: 21px; /* Отступ от внутренней границы фона до плиток */
+    background: url('/signals/assets/backgroundPlitki.png') no-repeat center center / cover; /* Фоновое изображение */
+    border-radius: 10px; /* Скругление углов фона */
+    position: relative; /* Убедитесь, что фон находится в том же контексте */
+    z-index: 1; /* Установите z-index для плиток */
+}
 
 .tile {
     width: 50px; /* Ширина плитки */
