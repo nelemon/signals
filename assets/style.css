@@ -46,8 +46,8 @@ body {
 }
 
 .star {
-    width: 50px; /* Размер звезды */
-    height: 50px; /* Размер звезды */
+    width: 48px; /* Размер звезды */
+    height: 46px; /* Размер звезды */
     background: url('/signals/assets/star.png') no-repeat center center / cover; /* Фоновое изображение звезды */
     opacity: 0; /* Скрываем звезду по умолчанию */
     transition: opacity 1s; /* Плавный переход для появления звезды */
