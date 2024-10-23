@@ -4,7 +4,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const starsContainer = document.querySelector('.stars-container');
     const totalTiles = 25; // Общее количество плиток
     const tilesToOpen = 5; // Количество плиток, которые будут открыты
-    const buttonInactiveDuration = 2000; // 2 секунды неактивности кнопки
+    const tileFadeDuration = 1000; // Продолжительность анимации исчезновения
+    const buttonInactiveDuration = 1000; // 1 секунды неактивности кнопки
 
     // Функция сброса состояния плиток и звезд
     function resetTiles() {
@@ -44,12 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
         resetTiles(); // Сбрасываем состояние плиток и звезд
         toggleButtonState(true); // Блокируем кнопку
 
-        let openedTilesThisRound;
-
-        // Строгая проверка, чтобы убедиться, что всегда открываются 5 плиток
-        do {
-            openedTilesThisRound = getRandomTiles();
-        } while (openedTilesThisRound.length < tilesToOpen); // Повторяем, пока не выберем 5 плиток
+        const openedTilesThisRound = getRandomTiles();
 
         console.log("Открытые плитки:", openedTilesThisRound); // Отладочное сообщение
 
