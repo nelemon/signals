@@ -8,9 +8,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const tileDelay = 500; // Интервал между анимациями плиток
     const buttonInactiveDuration = 2000; // 2 секунды неактивности кнопки
 
-    // Хранит уже открытые плитки
-    let openedTiles = new Set();
-
     // Функция сброса состояния плиток и звезд
     function resetTiles() {
         Array.from(tileGrid.children).forEach(tile => {
@@ -31,12 +28,21 @@ document.addEventListener("DOMContentLoaded", () => {
         getSignalButton.style.cursor = isDisabled ? "not-allowed" : "pointer";
     }
 
-    // Функция для перемешивания массива
-    function shuffle(array) {
-        for (let i = array.length - 1; i > 0; i--) {
+    // Функция для выбора 5 случайных плиток
+    function getRandomTiles() {
+        const selectedTiles = [];
+        const tileIndices = Array.from({ length: totalTiles }, (_, i) => i); // Массив индексов плиток
+
+        // Перемешиваем массив индексов плиток
+        for (let i = tileIndices.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
-            [array[i], array[j]] = [array[j], array[i]];
+            [tileIndices[i], tileIndices[j]] = [tileIndices[j], tileIndices[i]];
         }
+
+        // Берем первые 5 случайных плиток
+        selectedTiles.push(...tileIndices.slice(0, tilesToOpen));
+
+        return selectedTiles;
     }
 
     // Обработчик события нажатия на кнопку
@@ -44,26 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
         resetTiles(); // Сбрасываем состояние плиток и звезд
         toggleButtonState(true); // Блокируем кнопку
 
-        // Создаем массив всех доступных плиток, которые еще не открыты
-        const availableTiles = Array.from({ length: totalTiles }, (_, i) => i).filter(i => !openedTiles.has(i));
-
-        // Если доступных плиток меньше 5, сбрасываем состояние и выбираем заново
-        while (availableTiles.length < tilesToOpen) {
-            resetTiles(); // Сбрасываем состояние
-            openedTiles.clear(); // Очищаем список открытых плиток
-            // Пересоздаем массив доступных плиток
-            availableTiles.length = 0; // Очищаем массив
-            availableTiles.push(...Array.from({ length: totalTiles }, (_, i) => i).filter(i => !openedTiles.has(i)));
-        }
-
-        // Перемешиваем доступные плитки
-        shuffle(availableTiles);
-
-        // Берем первые 5 уникальных индексов
-        const openedTilesThisRound = availableTiles.slice(0, tilesToOpen);
-
-        // Добавляем открытые плитки в общий список
-        openedTiles = new Set([...openedTiles, ...openedTilesThisRound]);
+        const openedTilesThisRound = getRandomTiles();
 
         console.log("Открытые плитки:", openedTilesThisRound); // Отладочное сообщение
 
