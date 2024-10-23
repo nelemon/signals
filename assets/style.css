@@ -13,23 +13,21 @@ body {
 }
 
 .background {
-    position: absolute; /* Позволяет фону находиться под плитками */
-    width: 290px; /* Ширина фона */
-    height: 290px; /* Высота фона */
-    background-color: #cccccc; /* Серый цвет фона */
-    z-index: -1; /* Убедитесь, что фон находится позади плиток */
-    top: 50%; /* Центрируем фон по вертикали */
-    left: 50%; /* Центрируем фон по горизонтали */
-    transform: translate(-50%, -50%); /* Смещение на половину ширины и высоты для центрирования */
-    border-radius: 10px; /* Закругление углов (по желанию) */
+    position: absolute; /* Позиционируем фон абсолютно */
+    top: 0; /* Устанавливаем фон в верхнюю часть контейнера */
+    left: 0; /* Устанавливаем фон к левому краю контейнера */
+    width: calc(5 * 50px + 4 * 5px + 10px); /* Ширина фона: 5 плиток + 4 промежутка между плитками + 10px (по 5px с каждой стороны) */
+    height: calc(5 * 50px + 4 * 5px + 10px); /* Высота фона: 5 плиток + 4 промежутка между плитками + 10px (по 5px сверху и снизу) */
+    background-color: rgba(192, 192, 192, 0.5); /* Серый фон с небольшой прозрачностью */
+    z-index: -1; /* Помещаем фон за плитками */
+    border-radius: 10px; /* Углы фона (по желанию) */
 }
 
-/* Настройки для сетки плиток */
 .grid {
     display: grid;
-    grid-template-columns: repeat(5, 50px); /* 5 колонок по 50px */
-    grid-template-rows: repeat(5, 50px); /* 5 рядов по 50px */
-    gap: 5px; /* Промежуток между плитками */
+    grid-template-columns: repeat(5, 50px);
+    grid-template-rows: repeat(5, 50px);
+    gap: 5px;
     margin-bottom: 20px; /* Отступ снизу */
 }
 
@@ -43,9 +41,9 @@ body {
 
 .stars-container {
     display: grid;
-    grid-template-columns: repeat(5, 50px); /* 5 колонок по 50px */
-    grid-template-rows: repeat(5, 50px); /* 5 рядов по 50px */
-    gap: 5px; /* Промежуток между звездами */
+    grid-template-columns: repeat(5, 50px);
+    grid-template-rows: repeat(5, 50px);
+    gap: 5px;
     position: absolute; /* Позиционируем контейнер с звездами */
     top: 0; /* Смотрим, чтобы звезды находились на месте плиток */
     left: 0;
