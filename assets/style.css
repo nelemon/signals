@@ -1,5 +1,5 @@
 body {
-    background-color: #0D0924; /* Белый цвет */
+    background-color: #0D0924; /* Фон всего сайта */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -8,22 +8,25 @@ body {
 }
 
 .container {
-    position: relative; /* Для позиционирования дочерних элементов */
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
 }
 
-/* Фон, который будет под плитками */
+.grid-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .background {
-    position: absolute; /* Позиционируем фон абсолютно */
-    top: calc(50% - 22px - 30px); /* Центрируем фон по вертикали, добавив 30px */
-    left: 50%; /* Устанавливаем фон в центр по горизонтали */
-    width: calc(5 * 50px + 4 * 5px + 60px); /* Ширина фона: 5 плиток + 4 промежутка + 30px с каждой стороны */
-    height: calc(5 * 50px + 4 * 5px + 60px); /* Высота фона: 5 плиток + 4 промежутка + 30px сверху и снизу */
-    background-image: url('/signals/assets/backgroundPlitki.png'); /* Установите изображение фона */
-    background-size: cover; /* Масштабируем изображение, чтобы оно полностью заполнило фон */
-    background-position: center; /* Центрируем изображение */
-    transform: translate(-50%, -50%); /* Центрируем фон по обеим осям */
-    z-index: -1; /* Помещаем фон за плитками */
+    position: absolute;
+    width: calc(5 * 50px + 4 * 5px + 60px); /* Фон немного больше по ширине и высоте */
+    height: calc(5 * 50px + 4 * 5px + 60px); 
+    background: url('/signals/assets/backgroundPlitki.png') no-repeat center center / cover;
+    z-index: -1; /* Фон позади плиток */
 }
 
 .grid {
@@ -31,15 +34,6 @@ body {
     grid-template-columns: repeat(5, 50px);
     grid-template-rows: repeat(5, 50px);
     gap: 5px;
-    margin-bottom: 20px; /* Отступ снизу */
-}
-
-.tile {
-    position: relative; /* Добавлено для позиционирования звезды */
-    width: 50px;
-    height: 50px;
-    background: url('/signals/assets/plitka.png') no-repeat center center / cover;
-    cursor: pointer;
 }
 
 .stars-container {
@@ -47,28 +41,25 @@ body {
     grid-template-columns: repeat(5, 50px);
     grid-template-rows: repeat(5, 50px);
     gap: 5px;
-    position: absolute; /* Позиционируем контейнер с звездами */
-    top: 0; /* Смотрим, чтобы звезды находились на месте плиток */
+    position: absolute;
+    top: 0;
     left: 0;
 }
 
 .star {
-    width: 40px; /* Размер звезды после уменьшения на 20% */
-    height: 40px; /* Размер звезды после уменьшения на 20% */
+    position: absolute; /* Позиционируем звезду внутри плитки */
+    width: 40px; /* Звёзды на 20% меньше */
+    height: 40px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     background: url('/signals/assets/star.png') no-repeat center center / cover;
-    opacity: 0; /* Скрываем звезду по умолчанию */
-    transition: opacity 1s; /* Плавный переход для появления звезды */
-    position: relative; /* Относительное позиционирование для центровки */
-    top: 5px; /* Сдвиг вниз, чтобы звезда была по центру плитки */
-    left: 5px; /* Сдвиг вправо, чтобы звезда была по центру плитки */
+    opacity: 0;
+    transition: opacity 1s;
 }
 
-/* Стили для кнопки с изображением */
 button {
-    position: absolute;
-    bottom: -80px; /* Сдвигаем кнопку на 40px вниз от контейнера */
-    left: 50%; /* Центрируем кнопку по горизонтали */
-    transform: translateX(-50%); /* Смещаем её на половину ширины, чтобы выровнять по центру */
+    margin-top: 40px; /* Сдвигаем кнопку ниже плиток */
     background: none;
     border: none;
     padding: 0;
@@ -76,33 +67,7 @@ button {
 }
 
 button img {
-    width: 150px; /* Размер изображения кнопки */
+    width: 150px;
     height: auto;
     display: block;
-}
-
-/* Стили для неактивного состояния кнопки */
-button:disabled img {
-    opacity: 0.5; /* Прозрачность для темного эффекта */
-    cursor: not-allowed;
-}
-
-/* Анимация плавного появления звезд */
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-.show-star {
-    animation: fadeIn 1s forwards; /* Анимация появления */
-}
-
-/* Анимация плавного исчезновения */
-@keyframes fadeOut {
-    from { opacity: 1; }
-    to { opacity: 0; }
-}
-
-.fade-out {
-    animation: fadeOut 0.5s forwards; /* Анимация исчезновения (сокращена в 2 раза) */
 }
