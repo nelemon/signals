@@ -29,7 +29,6 @@ body {
     height: 50px; /* Высота плитки */
     background: url('/signals/assets/plitka.png') no-repeat center center / cover; /* Фоновое изображение плитки */
     cursor: pointer; /* Курсор при наведении на плитку */
-    position: relative; /* Позиционирование плиток для размещения звезд */
 }
 
 .stars-container {
@@ -37,6 +36,11 @@ body {
     grid-template-columns: repeat(5, 50px); /* Колонки */
     grid-template-rows: repeat(5, 50px); /* Строки */
     gap: 5px; /* Отступы между звездами */
+    position: absolute; /* Позиционируем контейнер со звездами под плитками */
+    top: 0; /* Начинаем от верхнего края */
+    left: 0;
+    width: 100%; /* Ширина контейнера со звездами */
+    height: 100%; /* Высота контейнера со звездами */
     pointer-events: none; /* Клики проходят через звезды */
 }
 
@@ -46,7 +50,6 @@ body {
     background: url('/signals/assets/star.png') no-repeat center center / cover; /* Фоновое изображение звезды */
     opacity: 0; /* Скрываем звезду по умолчанию */
     transition: opacity 1s; /* Плавный переход для появления звезды */
-    /* Убираем абсолютное позиционирование */
     align-self: center; /* Центрируем звезды внутри сетки */
 }
 
