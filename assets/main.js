@@ -1,33 +1,21 @@
 document.addEventListener("DOMContentLoaded", () => {
     const tileGrid = document.getElementById("tileGrid");
     const getSignalButton = document.getElementById("getSignalButton");
+    const starsContainer = document.querySelector('.stars-container');
     const totalTiles = 25;
     const tilesToOpen = 5;
     const tileFadeDuration = 1000; // Продолжительность анимации исчезновения
     const tileDelay = 500; // Интервал между анимациями плиток
 
-    // Генерация плиток
-    for (let i = 0; i < totalTiles; i++) {
-        const tile = document.createElement("div");
-        tile.classList.add("tile");
-        tile.setAttribute("data-index", i);
-
-        // Создание звезды
-        const star = document.createElement("div");
-        star.classList.add("star");
-        tile.appendChild(star); // Добавляем звезду в плитку
-
-        tileGrid.appendChild(tile); // Добавляем плитку в сетку
-    }
-
     function resetTiles() {
         // Сбрасываем состояние всех плиток
         Array.from(tileGrid.children).forEach(tile => {
-            tile.classList.remove("fade-out");
-            const star = tile.querySelector(".star"); // Получаем элемент звезды
-            if (star) {
-                star.style.opacity = 0; // Скрываем звезду
-            }
+            tile.classList.remove("fade-out", "star");
+        });
+
+        // Сбрасываем состояние всех звезд
+        Array.from(starsContainer.children).forEach(star => {
+            star.style.opacity = 0;
         });
     }
 
@@ -57,10 +45,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 const tile = tileGrid.children[tileIndex];
                 tile.classList.add("fade-out"); // Запускаем анимацию исчезновения
                 setTimeout(() => {
-                    const star = tile.querySelector(".star");
-                    if (star) {
-                        star.style.opacity = 1; // Появление звезды
-                    }
+                    tile.classList.add("star"); // Добавляем класс star к плитке
+                    const star = starsContainer.children[tileIndex]; // Получаем звезду с тем же индексом
+                    star.style.opacity = 1; // Показываем звезду
                     if (i === tilesToOpen - 1) {
                         // Активируем кнопку после завершения последней анимации
                         toggleButtonState(false);
