@@ -65,16 +65,18 @@ body {
 
 /* Стили для кнопки с изображением */
 button {
+    position: absolute;
+    bottom: -80px; /* Сдвигаем кнопку на 40px вниз от контейнера */
+    left: 50%; /* Центрируем кнопку по горизонтали */
+    transform: translateX(-50%); /* Смещаем её на половину ширины, чтобы выровнять по центру */
     background: none;
     border: none;
     padding: 0;
     cursor: pointer;
-    margin-top: 70px; /* Сдвиг кнопки вниз на 30px */
 }
 
-/* Стили для изображения кнопки */
 button img {
-    width: 150px; /* Установите нужные размеры для изображения */
+    width: 150px; /* Размер изображения кнопки */
     height: auto;
     display: block;
 }
