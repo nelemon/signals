@@ -25,11 +25,14 @@ body {
 }
 
 .tile {
+    display: grid;
+    place-items: center; /* Центрирование содержимого по вертикали и горизонтали */
     width: 50px;
     height: 50px;
     background: url('/signals/assets/plitka.png') no-repeat center center / cover;
     cursor: pointer;
 }
+
 
 .stars-container {
     position: absolute; /* Фиксируем звезды над плитками */
@@ -45,12 +48,13 @@ body {
 }
 
 .star {
-    width: 50px;
-    height: 50px;
-    background: url('/signals/assets/star.png') no-repeat center center / cover;
-    opacity: 0; /* Скрываем звезду по умолчанию */
-    transition: opacity 1s; /* Плавный переход для появления звезды */
+    width: 30px; /* Размер звезды */
+    height: 30px; /* Размер звезды */
+    background: url('/signals/assets/star.png') no-repeat center center / contain;
+    opacity: 0;
+    transition: opacity 1s;
 }
+
 
 /* Стили для кнопки с изображением */
 button {
