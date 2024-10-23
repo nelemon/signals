@@ -33,10 +33,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Функция для выбора плиток
     function getRandomTiles() {
-        // Создаем массив всех доступных плиток, которые еще не открыты
         const availableTiles = Array.from({ length: totalTiles }, (_, i) => i).filter(i => !openedTiles.has(i));
 
-        // Проверяем, достаточно ли плиток
         if (availableTiles.length < tilesToOpen) {
             console.warn("Недостаточно плиток для открытия, сбрасываем состояние.");
             resetTiles();
@@ -49,7 +47,6 @@ document.addEventListener("DOMContentLoaded", () => {
             const randomIndex = Math.floor(Math.random() * availableTiles.length);
             const tileIndex = availableTiles[randomIndex];
 
-            // Если плитка еще не была открыта, добавляем её в список открытых плиток
             if (!selectedTiles.includes(tileIndex)) {
                 selectedTiles.push(tileIndex);
             }
@@ -65,13 +62,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const openedTilesThisRound = getRandomTiles();
 
-        // Если недостаточно плиток, просто возвращаем
         if (!openedTilesThisRound) {
             toggleButtonState(false); // Активируем кнопку
             return;
         }
 
-        // Обновляем список открытых плиток
         openedTiles = new Set([...openedTiles, ...openedTilesThisRound]);
 
         console.log("Открытые плитки:", openedTilesThisRound); // Отладочное сообщение
@@ -82,13 +77,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 const tile = tileGrid.children[tileIndex];
                 tile.classList.add("fade-out"); // Запускаем анимацию исчезновения
 
-                // Получаем звезду с тем же индексом
                 const star = starsContainer.children[tileIndex];
                 star.style.opacity = 1; // Показываем звезду
                 star.classList.add("show-star"); // Добавляем класс для анимации появления звезды
 
                 if (i === tilesToOpen - 1) {
-                    // После завершения последней анимации ждем 2 секунды перед активацией кнопки
                     setTimeout(() => {
                         toggleButtonState(false); // Активируем кнопку
                     }, buttonInactiveDuration);
