@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const tilesToOpen = 5; // Количество плиток, которые будут открыты
     const tileFadeDuration = 1000; // Продолжительность анимации исчезновения
     const tileDelay = 500; // Интервал между анимациями плиток
-    const buttonInactiveDuration = 2000; // 5 секунд неактивности кнопки
+    const buttonInactiveDuration = 2000; // 2 секунды неактивности кнопки
 
     // Функция сброса состояния плиток и звезд
     function resetTiles() {
@@ -28,13 +28,14 @@ document.addEventListener("DOMContentLoaded", () => {
         getSignalButton.style.cursor = isDisabled ? "not-allowed" : "pointer";
     }
 
-    // Функция для перемешивания массива
-    function shuffleArray(array) {
-        for (let i = array.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [array[i], array[j]] = [array[j], array[i]];
+    // Функция для выбора уникальных индексов
+    function getUniqueRandomIndexes(count, max) {
+        const indexes = new Set();
+        while (indexes.size < count) {
+            const randomIndex = Math.floor(Math.random() * max);
+            indexes.add(randomIndex);
         }
-        return array;
+        return Array.from(indexes);
     }
 
     // Обработчик события нажатия на кнопку
@@ -42,16 +43,8 @@ document.addEventListener("DOMContentLoaded", () => {
         resetTiles(); // Сбрасываем состояние плиток и звезд
         toggleButtonState(true); // Блокируем кнопку
 
-        // Создаем массив индексов от 0 до 24 и перемешиваем его
-        const indexes = shuffleArray(Array.from({ length: totalTiles }, (_, i) => i));
-        const openedTiles = indexes.slice(0, tilesToOpen); // Берем первые 5 уникальных индексов
-
-        // Проверка на случай, если меньше 5 плиток открывается
-        if (openedTiles.length < tilesToOpen) {
-            console.error("Не удалось открыть 5 уникальных плиток.");
-            toggleButtonState(false); // Разблокируем кнопку
-            return; // Прерываем выполнение
-        }
+        // Получаем уникальные индексы
+        const openedTiles = getUniqueRandomIndexes(tilesToOpen, totalTiles);
 
         // Анимация исчезновения плиток и появления звезд
         openedTiles.forEach((tileIndex, i) => {
@@ -65,7 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 star.classList.add("show-star"); // Добавляем класс для анимации появления звезды
 
                 if (i === tilesToOpen - 1) {
-                    // После завершения последней анимации ждем 5 секунд перед активацией кнопки
+                    // После завершения последней анимации ждем 2 секунды перед активацией кнопки
                     setTimeout(() => {
                         toggleButtonState(false); // Активируем кнопку
                     }, buttonInactiveDuration);
