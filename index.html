@@ -10,23 +10,24 @@
     <div class="container">
         <div class="grid" id="tileGrid">
             <!-- Генерация 25 плиток -->
-            <script>
-                for (let i = 0; i < 25; i++) {
-                    document.write(<div class="tile" data-index="${i}"></div>);
-                }
-            </script>
         </div>
         <div class="stars-container">
-            <script>
-                for (let i = 0; i < 25; i++) {
-                    document.write(<div class="star" data-index="${i}"></div>);
-                }
-            </script>
+            <!-- Генерация 25 звезд -->
         </div>
         <button id="getSignalButton">
             <img src="/signals/assets/getSignal.png" alt="Получить сигнал">
         </button>
     </div>
+    <script>
+        const tileGrid = document.getElementById("tileGrid");
+        const starsContainer = document.querySelector('.stars-container');
+
+        // Генерация плиток
+        for (let i = 0; i < 25; i++) {
+            tileGrid.innerHTML += `<div class="tile" data-index="${i}"></div>`;
+            starsContainer.innerHTML += `<div class="star" data-index="${i}"></div>`;
+        }
+    </script>
     <script src="assets/main.js"></script>
 </body>
 </html>
