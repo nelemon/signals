@@ -17,14 +17,13 @@ body {
     position: absolute; /* Позиционируем фон абсолютно */
     top: 50%; /* Устанавливаем фон в центр по вертикали */
     left: 50%; /* Устанавливаем фон в центр по горизонтали */
-    width: calc(5 * 50px + 4 * 5px + 40px); /* Ширина фона: 5 плиток + 4 промежутка между плитками + 40px (по 20px с каждой стороны) */
-    height: calc(5 * 50px + 4 * 5px + 40px); /* Высота фона: 5 плиток + 4 промежутка между плитками + 40px (по 20px сверху и снизу) */
-    background-image: url('/signals/assets/backgroundPlitki.png'); /* Установка изображения фона */
-    background-size: cover; /* Масштабируем изображение, чтобы оно полностью покрывало фон */
+    width: calc(5 * 50px + 4 * 5px); /* Ширина фона: 5 плиток + 4 промежутка между плитками */
+    height: calc(5 * 50px + 4 * 5px); /* Высота фона: 5 плиток + 4 промежутка между плитками */
+    background-image: url('/signals/assets/backgroundPlitki.png'); /* Установите изображение фона */
+    background-size: cover; /* Масштабируем изображение, чтобы оно полностью заполнило фон */
     background-position: center; /* Центрируем изображение */
     transform: translate(-50%, -50%); /* Центрируем фон по обеим осям */
     z-index: -1; /* Помещаем фон за плитками */
-    border-radius: 10px; /* Углы фона (по желанию) */
 }
 
 .grid {
@@ -54,8 +53,8 @@ body {
 }
 
 .star {
-    width: 40px; /* Уменьшение звезд на 20% */
-    height: 40px; /* Уменьшение звезд на 20% */
+    width: 40px; /* Размер звезды уменьшен на 20% */
+    height: 40px; /* Размер звезды уменьшен на 20% */
     background: url('/signals/assets/star.png') no-repeat center center / cover;
     opacity: 0; /* Скрываем звезду по умолчанию */
     transition: opacity 1s; /* Плавный переход для появления звезды */
@@ -67,7 +66,7 @@ button {
     border: none;
     padding: 0;
     cursor: pointer;
-    margin-top: 30px; /* Сместим кнопку вниз на 30px */
+    margin-top: 30px; /* Сдвиг кнопки вниз на 30px */
 }
 
 /* Стили для изображения кнопки */
@@ -100,5 +99,5 @@ button:disabled img {
 }
 
 .fade-out {
-    animation: fadeOut 0.5s forwards; /* Сокращено время исчезновения плиток в 2 раза */
+    animation: fadeOut 0.5s forwards; /* Анимация исчезновения (сокращена в 2 раза) */
 }
