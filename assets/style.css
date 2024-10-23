@@ -5,6 +5,7 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
+    flex-direction: column; /* Добавлено для правильного размещения контейнеров */
 }
 
 .container {
@@ -20,23 +21,34 @@ body {
 }
 
 .tile {
-    position: relative; /* Для абсолютного позиционирования звезд */
+    position: relative; /* Добавлено для позиционирования звезды */
     width: 50px;
     height: 50px;
     background: url('/signals/assets/plitka.png') no-repeat center center / cover;
     cursor: pointer;
-    overflow: hidden; /* Чтобы звезды не выходили за пределы плиток */
+}
+
+/* Стили для контейнера звезд */
+.stars-container {
+    display: grid;
+    grid-template-columns: repeat(5, 50px);
+    grid-template-rows: repeat(5, 50px);
+    gap: 5px;
+    position: absolute; /* Позиционируем контейнер с звездами */
+    top: 0; /* Смотрим, чтобы звезды находились на месте плиток */
+    left: 0;
 }
 
 .star {
-    position: absolute; /* Абсолютное позиционирование для звезд */
-    top: 0;
-    left: 0;
-    width: 50px;
-    height: 50px;
+    width: 50px; /* Размер звезды */
+    height: 50px; /* Размер звезды */
     background: url('/signals/assets/star.png') no-repeat center center / cover;
-    opacity: 0; /* Звезды изначально невидимы */
-    transition: opacity 0.5s ease; /* Плавный переход при появлении */
+    opacity: 0; /* Скрываем звезду по умолчанию */
+    transition: opacity 1s; /* Плавный переход для видимости звезды */
+}
+
+.tile.star ~ .star[data-index="${index}"] {
+    opacity: 1; /* Показываем звезду, когда плитка имеет класс star */
 }
 
 /* Стили для кнопки с изображением */
