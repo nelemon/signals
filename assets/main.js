@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
         tile.setAttribute("data-index", i);
         
         const star = document.createElement("div");
-        star.classList.add("star", "hidden");
+        star.classList.add("star");
         
         tile.appendChild(star);
         tileGrid.appendChild(tile);
