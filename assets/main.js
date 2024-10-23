@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 // Сразу показываем звезду
                 const star = tile.querySelector(".star");
-                star.style.opacity = 1; 
+                star.style.opacity = 1; // Звезда становится видимой
 
                 if (i === tilesToOpen - 1) {
                     // Активируем кнопку после завершения последней анимации
