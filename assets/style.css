@@ -41,12 +41,11 @@ body {
     height: 100%;
     background: url('/signals/assets/star.png') no-repeat center center / cover;
     opacity: 0; /* По умолчанию звезда невидима */
-    transition: opacity 1s; /* Плавное появление звезды */
 }
 
 /* Появление звезды при исчезновении плитки */
 .tile.fade-out .star {
-    opacity: 1;
+    opacity: 1; /* Звезда становится видимой */
 }
 
 /* Стили для кнопки с изображением */
