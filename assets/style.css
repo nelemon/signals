@@ -14,14 +14,14 @@ body {
 
 .grid {
     display: grid;
-    grid-template-columns: repeat(5, 50px);
-    grid-template-rows: repeat(5, 50px);
+    grid-template-columns: repeat(5, 50px); /* 5 колонок плиток */
+    grid-template-rows: repeat(5, 50px); /* 5 строк плиток */
     gap: 5px; /* Отступы между плитками */
     margin-bottom: 20px;
-    background: url('/signals/assets/backgroundPlitki.png') no-repeat center center / cover; /* Фоновое изображение */
     padding: 10px; /* Отступ от внутренней границы фона до плиток */
+    background: url('/signals/assets/backgroundPlitki.png') no-repeat center center / cover; /* Фоновое изображение */
     border-radius: 10px; /* Скругление углов фона */
-    position: relative; /* Чтобы позиционировать звезды */
+    position: relative; /* Для абсолютного позиционирования звезд */
 }
 
 .tile {
@@ -32,7 +32,7 @@ body {
 }
 
 .stars-container {
-    position: absolute; /* Фиксируем звезды над плитками */
+    position: absolute; /* Позиционируем звезды над плитками */
     top: 0;
     left: 0;
     width: 100%; /* Ширина контейнера со звездами */
@@ -40,7 +40,7 @@ body {
     display: grid; /* Сетка для размещения звезд */
     grid-template-columns: repeat(5, 50px); /* Колонки */
     grid-template-rows: repeat(5, 50px); /* Строки */
-    gap: 5px; /* Отступы между звездами */
+    gap: 5px; /* Отступы между звездами (не влияют на отступ плиток от фона) */
     pointer-events: none; /* Клики проходят через звезды */
 }
 
