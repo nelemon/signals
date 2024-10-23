@@ -6,6 +6,19 @@ document.addEventListener("DOMContentLoaded", () => {
     const tileFadeDuration = 1000; // Продолжительность анимации исчезновения
     const tileDelay = 500; // Интервал между анимациями плиток
 
+    // Создание плиток
+    for (let i = 0; i < totalTiles; i++) {
+        const tile = document.createElement("div");
+        tile.classList.add("tile");
+        tile.setAttribute("data-index", i);
+        
+        const star = document.createElement("div");
+        star.classList.add("star", "hidden");
+        
+        tile.appendChild(star);
+        tileGrid.appendChild(tile);
+    }
+
     function resetTiles() {
         // Сбрасываем состояние всех плиток
         Array.from(tileGrid.children).forEach(tile => {
