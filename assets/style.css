@@ -28,31 +28,25 @@ body {
     height: 50px; /* Высота плитки */
     background: url('/signals/assets/plitka.png') no-repeat center center / cover; /* Фоновое изображение плитки */
     cursor: pointer; /* Курсор при наведении на плитку */
-    position: relative; /* Для правильного выравнивания звезд внутри плиток */
 }
 
 /* Контейнер для звезд с абсолютным позиционированием */
 .stars-container {
-    position: absolute; /* Позиционируем контейнер со звездами под плитками */
-    top: 0; /* Начинаем от верхнего края */
+    display: grid;
+    grid-template-columns: repeat(5, 50px);
+    grid-template-rows: repeat(5, 50px);
+    gap: 5px;
+    position: absolute; /* Позиционируем контейнер с звездами */
+    top: 0; /* Смотрим, чтобы звезды находились на месте плиток */
     left: 0;
-    width: 100%; /* Ширина контейнера со звездами */
-    height: 100%; /* Высота контейнера со звездами */
-    display: grid; /* Сетка для размещения звезд */
-    grid-template-columns: repeat(5, 50px); /* Колонки */
-    grid-template-rows: repeat(5, 50px); /* Строки */
-    gap: 5px; /* Отступы между звездами */
-    pointer-events: none; /* Клики проходят через звезды */
 }
 
 .star {
     width: 50px; /* Размер звезды */
     height: 50px; /* Размер звезды */
-    background: url('/signals/assets/star.png') no-repeat center center / cover; /* Фоновое изображение звезды */
+    background: url('/signals/assets/star.png') no-repeat center center / cover;
     opacity: 0; /* Скрываем звезду по умолчанию */
     transition: opacity 1s; /* Плавный переход для появления звезды */
-    align-self: center; /* Центрируем звезды по вертикали в клетке */
-    justify-self: center; /* Центрируем звезды по горизонтали в клетке */
 }
 
 /* Стили для кнопки с изображением */
