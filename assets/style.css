@@ -29,6 +29,7 @@ body {
     height: 50px; /* Высота плитки */
     background: url('/signals/assets/plitka.png') no-repeat center center / cover; /* Фоновое изображение плитки */
     cursor: pointer; /* Курсор при наведении на плитку */
+    position: relative; /* Для правильного выравнивания звезд внутри плиток */
 }
 
 .stars-container {
