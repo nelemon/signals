@@ -12,35 +12,44 @@ body {
     text-align: center;
 }
 
+/* Новый блок для фонового изображения */
+.background {
+    width: 635px; /* Указываем размер фоновой картинки */
+    height: 635px;
+    background: url('/signals/assets/backgroundPlitki.png') no-repeat center center / contain;
+    position: relative;
+}
+
 .grid {
     display: grid;
-    grid-template-columns: repeat(5, 50px);
-    grid-template-rows: repeat(5, 50px);
+    grid-template-columns: repeat(5, 100px); /* Увеличен размер плиток */
+    grid-template-rows: repeat(5, 100px);
     gap: 5px;
-    margin-bottom: 20px;
+    position: absolute; /* Чтобы плитки находились поверх фона */
+    top: 0;
+    left: 0;
 }
 
 .tile {
-    position: relative; /* Добавлено для позиционирования звезды */
-    width: 50px;
-    height: 50px;
+    width: 100px; /* Увеличенный размер плиток */
+    height: 100px;
     background: url('/signals/assets/plitka.png') no-repeat center center / cover;
     cursor: pointer;
 }
 
 .stars-container {
     display: grid;
-    grid-template-columns: repeat(5, 50px);
-    grid-template-rows: repeat(5, 50px);
+    grid-template-columns: repeat(5, 100px); /* Размер под плитки */
+    grid-template-rows: repeat(5, 100px);
     gap: 5px;
     position: absolute; /* Позиционируем контейнер с звездами */
-    top: 0; /* Смотрим, чтобы звезды находились на месте плиток */
+    top: 0; /* Чтобы звезды находились на месте плиток */
     left: 0;
 }
 
 .star {
-    width: 50px; /* Размер звезды */
-    height: 50px; /* Размер звезды */
+    width: 80px; /* Размер звезды */
+    height: 80px; /* Размер звезды */
     background: url('/signals/assets/star.png') no-repeat center center / cover;
     opacity: 0; /* Скрываем звезду по умолчанию */
     transition: opacity 1s; /* Плавный переход для появления звезды */
