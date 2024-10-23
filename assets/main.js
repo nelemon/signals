@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const tilesToOpen = 5; // Количество плиток, которые будут открыты
     const tileFadeDuration = 1000; // Продолжительность анимации исчезновения
     const tileDelay = 500; // Интервал между анимациями плиток
+    const buttonInactiveDuration = 5000; // 5 секунд неактивности кнопки
 
     // Функция сброса состояния плиток и звезд
     function resetTiles() {
@@ -57,8 +58,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 star.classList.add("show-star"); // Добавляем класс для анимации появления звезды
 
                 if (i === tilesToOpen - 1) {
-                    // Активируем кнопку после завершения последней анимации
-                    toggleButtonState(false);
+                    // После завершения последней анимации ждем 5 секунд перед активацией кнопки
+                    setTimeout(() => {
+                        toggleButtonState(false); // Активируем кнопку
+                    }, buttonInactiveDuration);
                 }
             }, i * tileDelay); // Интервал между анимациями плиток
         });
