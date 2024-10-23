@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const tilesToOpen = 5;
     const tileFadeDuration = 1000; // Продолжительность анимации исчезновения
     const tileDelay = 500; // Интервал между анимациями плиток
+    const revealDelay = 1000; // Задержка перед показом плиток после скрытия звезд
 
     function resetTiles() {
         // Сбрасываем состояние всех плиток
@@ -50,11 +51,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
             // Таймер для показа плиток после завершения анимации звезд
             setTimeout(() => {
-                star.style.opacity = 0; // Обеспечиваем, что звезда скрыта
+                star.style.opacity = 0; // Убедимся, что звезда скрыта
                 const tile = tileGrid.children[tileIndex];
                 tile.classList.add("fade-out"); // Запускаем анимацию исчезновения плитки
-                
-                // После завершения анимации плитки показываем соответствующую звезду
+
+                // Устанавливаем паузу перед показом плитки
                 setTimeout(() => {
                     tile.style.opacity = 1; // Убедимся, что плитка видима
                     tile.classList.add("star"); // Добавляем класс star к плитке
@@ -63,7 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         // Активируем кнопку после завершения последней анимации
                         toggleButtonState(false);
                     }
-                }, tileFadeDuration); // Ждем завершения анимации исчезновения плитки
+                }, revealDelay); // Задержка перед показом плитки
             }, tileDelay * i); // Интервал между анимациями плиток
         });
     });
