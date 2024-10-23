@@ -20,14 +20,27 @@ body {
 }
 
 .tile {
+    position: relative; /* Для размещения звезды внутри плитки */
     width: 50px;
     height: 50px;
     background: url('/signals/assets/plitka.png') no-repeat center center / cover;
     cursor: pointer;
 }
 
+/* Звезда скрыта по умолчанию */
 .star {
+    width: 100%;
+    height: 100%;
     background: url('/signals/assets/star.png') no-repeat center center / cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none; /* Скрываем звезду по умолчанию */
+}
+
+/* Показываем звезду */
+.star.visible {
+    display: block;
 }
 
 /* Стили для кнопки с изображением */
