@@ -27,8 +27,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Обработчик события нажатия на кнопку
     getSignalButton.addEventListener("click", () => {
-        toggleButtonState(true); // Блокируем кнопку
         resetTiles(); // Сбрасываем состояние плиток и звезд
+        toggleButtonState(true); // Блокируем кнопку
 
         // Выбираем случайные 5 плиток
         let openedTiles = [];
@@ -47,8 +47,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 setTimeout(() => {
                     tile.classList.add("star"); // Добавляем класс star к плитке
                     const star = starsContainer.children[tileIndex]; // Получаем звезду с тем же индексом
-                    star.style.opacity = 1; // Показываем звезду без анимации
+                    star.style.opacity = 1; // Показываем звезду
                     star.classList.add("show-star"); // Добавляем класс для анимации появления звезды
+
                     if (i === tilesToOpen - 1) {
                         // Активируем кнопку после завершения последней анимации
                         toggleButtonState(false);
