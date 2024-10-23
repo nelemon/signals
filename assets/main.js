@@ -46,6 +46,8 @@ document.addEventListener("DOMContentLoaded", () => {
         // Получаем уникальные индексы
         const openedTiles = getUniqueRandomIndexes(tilesToOpen, totalTiles);
 
+        console.log("Открытые плитки:", openedTiles); // Отладочное сообщение
+
         // Анимация исчезновения плиток и появления звезд
         openedTiles.forEach((tileIndex, i) => {
             setTimeout(() => {
