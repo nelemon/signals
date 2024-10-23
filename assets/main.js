@@ -45,20 +45,19 @@ document.addEventListener("DOMContentLoaded", () => {
         resetTiles(); // Сбрасываем состояние плиток и звезд
         toggleButtonState(true); // Блокируем кнопку
 
-        // Получаем уникальные индексы, исключая уже открытые плитки
-        const availableTiles = Array.from({ length: totalTiles }, (_, i) => i).filter(i => !openedTiles.has(i));
-        
-        // Если доступных плиток недостаточно, очищаем список открытых плиток
-        if (availableTiles.length < tilesToOpen) {
+        // Проверяем, сколько плиток еще можно открыть
+        if (openedTiles.size + tilesToOpen > totalTiles) {
             openedTiles.clear(); // Сбрасываем открытые плитки
         }
 
+        // Получаем уникальные индексы, исключая уже открытые плитки
+        const availableTiles = Array.from({ length: totalTiles }, (_, i) => i).filter(i => !openedTiles.has(i));
         const openedTilesThisRound = getUniqueRandomIndexes(tilesToOpen, availableTiles.length).map(i => availableTiles[i]);
-
-        console.log("Открытые плитки:", openedTilesThisRound); // Отладочное сообщение
 
         // Добавляем открытые плитки в общий список
         openedTiles = new Set([...openedTiles, ...openedTilesThisRound]);
+
+        console.log("Открытые плитки:", openedTilesThisRound); // Отладочное сообщение
 
         // Анимация исчезновения плиток и появления звезд
         openedTilesThisRound.forEach((tileIndex, i) => {
