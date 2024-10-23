@@ -23,8 +23,6 @@ document.addEventListener("DOMContentLoaded", () => {
         // Сбрасываем состояние всех плиток
         Array.from(tileGrid.children).forEach(tile => {
             tile.classList.remove("fade-out");
-            const star = tile.querySelector(".star");
-            star.classList.remove("visible");
         });
     }
 
@@ -54,14 +52,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 const tile = tileGrid.children[tileIndex];
                 tile.classList.add("fade-out"); // Запускаем анимацию исчезновения
 
-                setTimeout(() => {
-                    const star = tile.querySelector(".star");
-                    star.classList.add("visible"); // Показываем звезду после исчезновения плитки
-                    if (i === tilesToOpen - 1) {
-                        // Активируем кнопку после завершения последней анимации
-                        toggleButtonState(false);
-                    }
-                }, tileFadeDuration); // Ждём завершения анимации исчезновения
+                if (i === tilesToOpen - 1) {
+                    // Активируем кнопку после завершения последней анимации
+                    setTimeout(() => toggleButtonState(false), tileFadeDuration);
+                }
             }, i * tileDelay); // Интервал между анимациями плиток
         });
     });
