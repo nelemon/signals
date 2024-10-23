@@ -48,6 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     tile.classList.add("star"); // Добавляем класс star к плитке
                     const star = starsContainer.children[tileIndex]; // Получаем звезду с тем же индексом
                     star.style.opacity = 1; // Показываем звезду без анимации
+                    star.classList.add("show-star"); // Добавляем класс для анимации появления звезды
                     if (i === tilesToOpen - 1) {
                         // Активируем кнопку после завершения последней анимации
                         toggleButtonState(false);
