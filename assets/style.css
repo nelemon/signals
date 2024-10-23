@@ -58,6 +58,38 @@ body {
     align-self: center; /* Центрируем звезды по вертикали в клетке */
     justify-self: center; /* Центрируем звезды по горизонтали в клетке */
     position: relative; /* Позиционируем звезды относительно их контейнера */
+    margin: auto; /* Центрируем с помощью margin */
+    transform: translate(-50%, -50%); /* Дополнительное смещение для центрирования */
 }
 
-/* Остальные стили без изменений */
+button {
+    background: none; /* Без фона */
+    border: none; /* Без границ */
+    padding: 0; /* Без отступов */
+    cursor: pointer; /* Курсор при наведении на кнопку */
+    display: inline-block; /* Уменьшите кнопку до размеров изображения */
+}
+
+button img {
+    width: 150px; /* Ширина изображения кнопки */
+    height: auto; /* Автоматическая высота для сохранения пропорций */
+}
+
+/* Анимации */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.show-star {
+    animation: fadeIn 1s forwards; /* Анимация появления */
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+.fade-out {
+    animation: fadeOut 1s forwards; /* Анимация исчезновения */
+}
