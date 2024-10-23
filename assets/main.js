@@ -2,58 +2,58 @@ document.addEventListener("DOMContentLoaded", () => {
     const tileGrid = document.getElementById("tileGrid");
     const getSignalButton = document.getElementById("getSignalButton");
     const starsContainer = document.querySelector('.stars-container');
-    const totalTiles = 25;
-    const tilesToOpen = 5;
+    const totalTiles = 25; // Общее количество плиток
+    const tilesToOpen = 5; // Количество плиток, которые будут открыты
     const tileFadeDuration = 1000; // Продолжительность анимации исчезновения
     const tileDelay = 500; // Интервал между анимациями плиток
 
+    // Функция сброса состояния плиток и звезд
     function resetTiles() {
-        // Сбрасываем состояние всех плиток
         Array.from(tileGrid.children).forEach(tile => {
             tile.classList.remove("fade-out", "star");
         });
 
-        // Сбрасываем состояние всех звезд
         Array.from(starsContainer.children).forEach(star => {
-            star.style.opacity = 0;
+            star.style.opacity = 0; // Скрываем звезды
         });
     }
 
+    // Функция управления состоянием кнопки
     function toggleButtonState(isDisabled) {
-        // Управляем состоянием кнопки
         getSignalButton.disabled = isDisabled;
         getSignalButton.style.backgroundColor = isDisabled ? "#cccccc" : ""; // Меняем цвет кнопки
         getSignalButton.style.cursor = isDisabled ? "not-allowed" : "pointer";
     }
 
+    // Обработчик события нажатия на кнопку
     getSignalButton.addEventListener("click", () => {
-    toggleButtonState(true); // Блокируем кнопку
-    resetTiles(); // Сбрасываем состояние плиток
+        toggleButtonState(true); // Блокируем кнопку
+        resetTiles(); // Сбрасываем состояние плиток
 
-    // Выбираем случайные 5 плиток
-    let openedTiles = [];
-    while (openedTiles.length < tilesToOpen) {
-        const randomIndex = Math.floor(Math.random() * totalTiles);
-        if (!openedTiles.includes(randomIndex)) {
-            openedTiles.push(randomIndex);
+        // Выбираем случайные 5 плиток
+        let openedTiles = [];
+        while (openedTiles.length < tilesToOpen) {
+            const randomIndex = Math.floor(Math.random() * totalTiles);
+            if (!openedTiles.includes(randomIndex)) {
+                openedTiles.push(randomIndex);
+            }
         }
-    }
 
-    // Анимация исчезновения плиток
-    openedTiles.forEach((tileIndex, i) => {
-        setTimeout(() => {
-            const tile = tileGrid.children[tileIndex];
-            tile.classList.add("fade-out"); // Запускаем анимацию исчезновения
+        // Анимация исчезновения плиток
+        openedTiles.forEach((tileIndex, i) => {
             setTimeout(() => {
-                tile.classList.add("star"); // Добавляем класс star к плитке
-                const star = starsContainer.children[tileIndex]; // Получаем звезду с тем же индексом
-                star.style.opacity = 1; // Показываем звезду без анимации
-                if (i === tilesToOpen - 1) {
-                    // Активируем кнопку после завершения последней анимации
-                    toggleButtonState(false);
-                }
-            }, tileFadeDuration); // Ждём завершения анимации исчезновения
-        }, i * tileDelay); // Интервал между анимациями плиток
+                const tile = tileGrid.children[tileIndex];
+                tile.classList.add("fade-out"); // Запускаем анимацию исчезновения
+                setTimeout(() => {
+                    tile.classList.add("star"); // Добавляем класс star к плитке
+                    const star = starsContainer.children[tileIndex]; // Получаем звезду с тем же индексом
+                    star.style.opacity = 1; // Показываем звезду без анимации
+                    if (i === tilesToOpen - 1) {
+                        // Активируем кнопку после завершения последней анимации
+                        toggleButtonState(false);
+                    }
+                }, tileFadeDuration); // Ждем завершения анимации исчезновения
+            }, i * tileDelay); // Интервал между анимациями плиток
+        });
     });
 });
-
