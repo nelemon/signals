@@ -31,16 +31,12 @@ document.addEventListener("DOMContentLoaded", () => {
         getSignalButton.style.cursor = isDisabled ? "not-allowed" : "pointer";
     }
 
-    // Функция для выбора уникальных индексов
-    function getUniqueRandomIndexes(count, max) {
-        const indexes = new Set();
-        while (indexes.size < count) {
-            const randomIndex = Math.floor(Math.random() * max);
-            if (!openedTiles.has(randomIndex)) { // Проверяем, что индекс еще не открыт
-                indexes.add(randomIndex);
-            }
+    // Функция для перемешивания массива
+    function shuffle(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
         }
-        return Array.from(indexes);
     }
 
     // Обработчик события нажатия на кнопку
@@ -48,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
         resetTiles(); // Сбрасываем состояние плиток и звезд
         toggleButtonState(true); // Блокируем кнопку
 
-        // Получаем доступные плитки
+        // Создаем массив всех доступных плиток
         const availableTiles = Array.from({ length: totalTiles }, (_, i) => i).filter(i => !openedTiles.has(i));
 
         // Проверяем, достаточно ли плиток для открытия
@@ -58,8 +54,12 @@ document.addEventListener("DOMContentLoaded", () => {
             return; // Завершаем выполнение
         }
 
-        const openedTilesThisRound = getUniqueRandomIndexes(tilesToOpen, availableTiles.length);
+        // Перемешиваем доступные плитки
+        shuffle(availableTiles);
 
+        // Берем первые 5 уникальных индексов
+        const openedTilesThisRound = availableTiles.slice(0, tilesToOpen);
+        
         // Добавляем открытые плитки в общий список
         openedTiles = new Set([...openedTiles, ...openedTilesThisRound]);
 
