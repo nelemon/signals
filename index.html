@@ -1,21 +1,20 @@
-<div class="container">
-    <div class="background"></div> <!-- Элемент фона -->
-    <div class="grid" id="tileGrid">
-        <!-- Генерация 25 плиток -->
-        <script>
-            for (let i = 0; i < 25; i++) {
-                document.write(`<div class="tile" data-index="${i}"></div>`);
-            }
-        </script>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/style.css">
+    <title>Signals</title>
+</head>
+<body>
+    <div class="container">
+        <div class="background"></div> <!-- Добавлен фон -->
+        <div class="grid" id="tileGrid"></div> <!-- Контейнер для плиток -->
+        <div class="stars-container"></div> <!-- Контейнер для звезд -->
+        <button id="getSignalButton">
+            <img src="/signals/assets/getSignal.png" alt="Получить сигнал">
+        </button>
     </div>
-    <div class="stars-container">
-        <script>
-            for (let i = 0; i < 25; i++) {
-                document.write(`<div class="star" data-index="${i}"></div>`);
-            }
-        </script>
-    </div>
-    <button id="getSignalButton">
-        <img src="/signals/assets/getSignal.png" alt="Получить сигнал">
-    </button>
-</div>
+    <script src="assets/main.js"></script>
+</body>
+</html>
