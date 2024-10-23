@@ -12,8 +12,10 @@ document.addEventListener("DOMContentLoaded", () => {
         Array.from(tileGrid.children).forEach(tile => {
             tile.classList.remove("fade-out", "star");
         });
+    }
 
-        // Сбрасываем состояние всех звезд
+    function resetStars() {
+        // Скрываем все звезды
         Array.from(starsContainer.children).forEach(star => {
             star.style.opacity = 0;
         });
@@ -28,6 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     getSignalButton.addEventListener("click", () => {
         toggleButtonState(true); // Блокируем кнопку
+        resetStars(); // Скрываем звезды
         resetTiles(); // Сбрасываем состояние плиток
 
         // Выбираем случайные 5 плиток
@@ -39,20 +42,22 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }
 
-        // Анимация исчезновения плиток
+        // Сначала скрываем звезды
         openedTiles.forEach((tileIndex, i) => {
+            const star = starsContainer.children[tileIndex];
+            star.style.opacity = 0; // Скрываем звезду перед анимацией плитки
+
             setTimeout(() => {
                 const tile = tileGrid.children[tileIndex];
-                tile.classList.add("fade-out"); // Запускаем анимацию исчезновения
+                tile.classList.add("fade-out"); // Запускаем анимацию исчезновения плитки
                 setTimeout(() => {
                     tile.classList.add("star"); // Добавляем класс star к плитке
-                    const star = starsContainer.children[tileIndex]; // Получаем звезду с тем же индексом
                     star.style.opacity = 1; // Показываем звезду
                     if (i === tilesToOpen - 1) {
                         // Активируем кнопку после завершения последней анимации
                         toggleButtonState(false);
                     }
-                }, tileFadeDuration); // Ждём завершения анимации исчезновения
+                }, tileFadeDuration); // Ждем завершения анимации исчезновения плитки
             }, i * tileDelay); // Интервал между анимациями плиток
         });
     });
