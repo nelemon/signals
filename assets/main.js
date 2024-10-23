@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         Array.from(starsContainer.children).forEach(star => {
-            star.style.opacity = 0; // Скрываем звезды
+            star.style.opacity = 0; // Скрываем звезды сразу
         });
     }
 
@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Обработчик события нажатия на кнопку
     getSignalButton.addEventListener("click", () => {
         toggleButtonState(true); // Блокируем кнопку
-        resetTiles(); // Сбрасываем состояние плиток
+        resetTiles(); // Сбрасываем состояние плиток и звезд
 
         // Выбираем случайные 5 плиток
         let openedTiles = [];
