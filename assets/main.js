@@ -44,10 +44,19 @@ document.addEventListener("DOMContentLoaded", () => {
         resetTiles(); // Сбрасываем состояние плиток и звезд
         toggleButtonState(true); // Блокируем кнопку
 
-        // Создаем массив всех доступных плиток
-        const availableTiles = Array.from({ length: totalTiles }, (_, i) => i);
+        // Создаем массив всех доступных плиток, которые еще не открыты
+        const availableTiles = Array.from({ length: totalTiles }, (_, i) => i).filter(i => !openedTiles.has(i));
 
-        // Перемешиваем все плитки
+        // Если доступных плиток меньше 5, сбрасываем состояние и выбираем заново
+        while (availableTiles.length < tilesToOpen) {
+            resetTiles(); // Сбрасываем состояние
+            openedTiles.clear(); // Очищаем список открытых плиток
+            // Пересоздаем массив доступных плиток
+            availableTiles.length = 0; // Очищаем массив
+            availableTiles.push(...Array.from({ length: totalTiles }, (_, i) => i).filter(i => !openedTiles.has(i)));
+        }
+
+        // Перемешиваем доступные плитки
         shuffle(availableTiles);
 
         // Берем первые 5 уникальных индексов
