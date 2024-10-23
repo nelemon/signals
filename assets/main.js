@@ -32,6 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function getRandomTiles() {
         const selectedTiles = new Set();
 
+        // Выбираем уникальные плитки до тех пор, пока не получим 5
         while (selectedTiles.size < tilesToOpen) {
             const randomIndex = Math.floor(Math.random() * totalTiles);
             selectedTiles.add(randomIndex); // Добавляем случайный индекс
@@ -46,6 +47,12 @@ document.addEventListener("DOMContentLoaded", () => {
         toggleButtonState(true); // Блокируем кнопку
 
         const openedTilesThisRound = getRandomTiles();
+
+        // Проверка, что всегда открываются 5 плиток
+        if (openedTilesThisRound.length !== tilesToOpen) {
+            console.error("Ошибка: открыто не 5 плиток:", openedTilesThisRound);
+            return; // Завершаем выполнение, если не открыто 5 плиток
+        }
 
         console.log("Открытые плитки:", openedTilesThisRound); // Отладочное сообщение
 
