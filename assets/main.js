@@ -8,19 +8,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function resetTiles() {
         // Сбрасываем состояние всех плиток
-        Array.from(tileGrid.children).forEach((child, index) => {
-            if (child.classList.contains("tile")) {
-                child.classList.remove("fade-out");
-            } else {
-                child.style.display = "none"; // Скрываем звезды
-            }
+        Array.from(tileGrid.children).forEach(tile => {
+            tile.classList.remove("fade-out");
+            tile.querySelector(".star").style.opacity = 0; // Скрываем звезду
         });
     }
 
     function toggleButtonState(isDisabled) {
         // Управляем состоянием кнопки
         getSignalButton.disabled = isDisabled;
-        getSignalButton.style.backgroundColor = isDisabled ? "#cccccc" : "";
+        getSignalButton.style.backgroundColor = isDisabled ? "#cccccc" : ""; // Меняем цвет кнопки
         getSignalButton.style.cursor = isDisabled ? "not-allowed" : "pointer";
     }
 
@@ -42,15 +39,14 @@ document.addEventListener("DOMContentLoaded", () => {
             setTimeout(() => {
                 const tile = tileGrid.children[tileIndex];
                 tile.classList.add("fade-out"); // Запускаем анимацию исчезновения
-
-                // Показать звезду под плиткой
-                const star = tileGrid.children[tileIndex + totalTiles]; // Звезда будет сразу под плиткой
-                star.style.display = "block"; // Показываем звезду
-
-                if (i === tilesToOpen - 1) {
-                    // Активируем кнопку после завершения последней анимации
-                    setTimeout(() => toggleButtonState(false), tileFadeDuration);
-                }
+                setTimeout(() => {
+                    const star = tile.querySelector(".star");
+                    star.style.opacity = 1; // Появление звезды
+                    if (i === tilesToOpen - 1) {
+                        // Активируем кнопку после завершения последней анимации
+                        toggleButtonState(false);
+                    }
+                }, tileFadeDuration); // Ждём завершения анимации исчезновения
             }, i * tileDelay); // Интервал между анимациями плиток
         });
     });
