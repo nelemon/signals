@@ -21,7 +21,6 @@ body {
     padding: 21px; /* Отступ от внутренней границы фона до плиток */
     background: url('/signals/assets/backgroundPlitki.png') no-repeat center center / cover; /* Фоновое изображение */
     border-radius: 10px; /* Скругление углов фона */
-    position: relative; /* Для абсолютного позиционирования звезд */
 }
 
 .tile {
@@ -32,6 +31,7 @@ body {
     position: relative; /* Для правильного выравнивания звезд внутри плиток */
 }
 
+/* Контейнер для звезд с абсолютным позиционированием */
 .stars-container {
     display: grid; /* Сетка для размещения звезд */
     grid-template-columns: repeat(5, 50px); /* Колонки */
@@ -51,6 +51,9 @@ body {
     background: url('/signals/assets/star.png') no-repeat center center / cover; /* Фоновое изображение звезды */
     opacity: 0; /* Скрываем звезду по умолчанию */
     transition: opacity 1s; /* Плавный переход для появления звезды */
+    position: relative; /* Позиционируем звезды относительно их контейнера */
+    top: 0; /* Убираем смещение вниз */
+    left: 0; /* Убираем смещение вбок */
     display: flex; /* Используем flexbox для центрирования */
     justify-content: center; /* Центрируем по горизонтали */
     align-items: center; /* Центрируем по вертикали */
