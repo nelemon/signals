@@ -18,7 +18,7 @@ body {
     grid-template-rows: repeat(5, 50px); /* 5 строк плиток */
     gap: 5px; /* Отступы между плитками */
     margin-bottom: 20px;
-    padding: 25px; /* Отступ от внутренней границы фона до плиток */
+    padding: 21px; /* Отступ от внутренней границы фона до плиток */
     background: url('/signals/assets/backgroundPlitki.png') no-repeat center center / cover; /* Фоновое изображение */
     border-radius: 10px; /* Скругление углов фона */
     position: relative; /* Для абсолютного позиционирования звезд */
