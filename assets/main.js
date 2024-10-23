@@ -6,9 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const tilesToOpen = 5; // Количество плиток, которые будут открыты
     const tileFadeDuration = 1000; // Продолжительность анимации исчезновения
     const tileDelay = 500; // Интервал между анимациями плиток
-    const buttonInactiveDuration = 1500; // 2 секунды неактивности кнопки
-
-    let openedTiles = new Set(); // Хранит уже открытые плитки
+    const buttonInactiveDuration = 2000; // 2 секунды неактивности кнопки
 
     // Функция сброса состояния плиток и звезд
     function resetTiles() {
@@ -45,19 +43,11 @@ document.addEventListener("DOMContentLoaded", () => {
         resetTiles(); // Сбрасываем состояние плиток и звезд
         toggleButtonState(true); // Блокируем кнопку
 
-        // Проверяем, сколько плиток еще можно открыть
-        if (openedTiles.size + tilesToOpen > totalTiles) {
-            openedTiles.clear(); // Сбрасываем открытые плитки
-        }
+        // Получаем уникальные индексы, доступные для открытия
+        const availableTiles = Array.from({ length: totalTiles }, (_, i) => i); // Все плитки
 
-        // Получаем уникальные индексы, исключая уже открытые плитки
-        const availableTiles = Array.from({ length: totalTiles }, (_, i) => i).filter(i => !openedTiles.has(i));
-        const openedTilesThisRound = getUniqueRandomIndexes(tilesToOpen, availableTiles.length).map(i => availableTiles[i]);
-
-        // Добавляем открытые плитки в общий список
-        openedTiles = new Set([...openedTiles, ...openedTilesThisRound]);
-
-        console.log("Открытые плитки:", openedTilesThisRound); // Отладочное сообщение
+        // Получаем 5 уникальных индексов
+        const openedTilesThisRound = getUniqueRandomIndexes(tilesToOpen, availableTiles.length);
 
         // Анимация исчезновения плиток и появления звезд
         openedTilesThisRound.forEach((tileIndex, i) => {
