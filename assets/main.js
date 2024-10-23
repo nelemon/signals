@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const tilesToOpen = 5; // Количество плиток, которые будут открыты
     const tileFadeDuration = 1000; // Продолжительность анимации исчезновения
     const tileDelay = 500; // Интервал между анимациями плиток
-    const buttonInactiveDuration = 2000; // 5 секунд неактивности кнопки
+    const buttonInactiveDuration = 5000; // 5 секунд неактивности кнопки
 
     // Функция сброса состояния плиток и звезд
     function resetTiles() {
@@ -45,6 +45,13 @@ document.addEventListener("DOMContentLoaded", () => {
         // Создаем массив индексов от 0 до 24 и перемешиваем его
         const indexes = shuffleArray(Array.from({ length: totalTiles }, (_, i) => i));
         const openedTiles = indexes.slice(0, tilesToOpen); // Берем первые 5 уникальных индексов
+
+        // Проверка на случай, если меньше 5 плиток открывается
+        if (openedTiles.length < tilesToOpen) {
+            console.error("Не удалось открыть 5 уникальных плиток.");
+            toggleButtonState(false); // Разблокируем кнопку
+            return; // Прерываем выполнение
+        }
 
         // Анимация исчезновения плиток и появления звезд
         openedTiles.forEach((tileIndex, i) => {
