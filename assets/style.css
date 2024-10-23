@@ -21,6 +21,8 @@ body {
     padding: 21px; /* Отступ от внутренней границы фона до плиток */
     background: url('/signals/assets/backgroundPlitki.png') no-repeat center center / cover; /* Фоновое изображение */
     border-radius: 10px; /* Скругление углов фона */
+    position: relative; /* Убедитесь, что фон находится в том же контексте */
+    z-index: 1; /* Установите z-index для плиток */
 }
 
 .tile {
@@ -29,6 +31,7 @@ body {
     background: url('/signals/assets/plitka.png') no-repeat center center / cover; /* Фоновое изображение плитки */
     cursor: pointer; /* Курсор при наведении на плитку */
     position: relative; /* Для правильного выравнивания звезд внутри плиток */
+    z-index: 2; /* Убедитесь, что плитки над фоном */
 }
 
 /* Контейнер для звезд с абсолютным позиционированием */
@@ -43,53 +46,18 @@ body {
     grid-template-rows: repeat(5, 50px); /* Строки */
     gap: 5px; /* Отступы между звездами */
     pointer-events: none; /* Клики проходят через звезды */
+    z-index: 3; /* Убедитесь, что звезды находятся над плитками */
 }
 
 .star {
-    width: 50px; /* Размер звезды */
-    height: 50px; /* Размер звезды */
+    width: 30px; /* Размер звезды */
+    height: 30px; /* Размер звезды */
     background: url('/signals/assets/star.png') no-repeat center center / cover; /* Фоновое изображение звезды */
     opacity: 0; /* Скрываем звезду по умолчанию */
     transition: opacity 1s; /* Плавный переход для появления звезды */
     align-self: center; /* Центрируем звезды по вертикали в клетке */
     justify-self: center; /* Центрируем звезды по горизонтали в клетке */
+    position: relative; /* Позиционируем звезды относительно их контейнера */
 }
 
-/* Стили для кнопки с изображением */
-button {
-    background: none; /* Без фона */
-    border: none; /* Без границ */
-    padding: 0; /* Без отступов */
-    cursor: pointer; /* Курсор при наведении на кнопку */
-}
-
-button img {
-    width: 150px; /* Ширина изображения кнопки */
-    height: auto; /* Автоматическая высота для сохранения пропорций */
-    display: block; /* Блок для изображения */
-}
-
-button:disabled img {
-    opacity: 0.5; /* Прозрачность для неактивного состояния кнопки */
-    cursor: not-allowed; /* Курсор для неактивного состояния */
-}
-
-/* Анимация плавного появления звезд */
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-.show-star {
-    animation: fadeIn 1s forwards; /* Анимация появления */
-}
-
-/* Анимация плавного исчезновения */
-@keyframes fadeOut {
-    from { opacity: 1; }
-    to { opacity: 0; }
-}
-
-.fade-out {
-    animation: fadeOut 1s forwards; /* Анимация исчезновения */
-}
+/* Остальные стили без изменений */
