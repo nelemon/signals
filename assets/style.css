@@ -17,31 +17,26 @@ body {
     grid-template-rows: repeat(5, 50px);
     gap: 5px;
     margin-bottom: 20px;
-    position: relative; /* Для правильного размещения звезд */
 }
 
 .tile {
-    position: relative; /* Для правильного размещения звезд */
+    position: relative; /* Для абсолютного позиционирования звезд */
     width: 50px;
     height: 50px;
     background: url('/signals/assets/plitka.png') no-repeat center center / cover;
     cursor: pointer;
-    transition: opacity 1s ease-in-out; /* Плавное исчезновение плитки */
+    overflow: hidden; /* Чтобы звезды не выходили за пределы плиток */
 }
 
-.tile.fade-out {
-    opacity: 0; /* Плитка становится прозрачной */
-}
-
-/* Слой звезды */
 .star {
-    position: absolute;
+    position: absolute; /* Абсолютное позиционирование для звезд */
     top: 0;
     left: 0;
-    width: 50px; /* Ширина звезды */
-    height: 50px; /* Высота звезды */
+    width: 50px;
+    height: 50px;
     background: url('/signals/assets/star.png') no-repeat center center / cover;
-    opacity: 1; /* Звезда по умолчанию видима */
+    opacity: 0; /* Звезды изначально невидимы */
+    transition: opacity 0.5s ease; /* Плавный переход при появлении */
 }
 
 /* Стили для кнопки с изображением */
@@ -63,4 +58,14 @@ button img {
 button:disabled img {
     opacity: 0.5; /* Прозрачность для темного эффекта */
     cursor: not-allowed;
+}
+
+/* Анимация плавного исчезновения */
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+.fade-out {
+    animation: fadeOut 1s forwards; /* Анимация исчезновения */
 }
