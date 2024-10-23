@@ -50,9 +50,10 @@ body {
     left: 0;
 }
 
+/* Уменьшенные звезды */
 .star {
-    width: 50px; /* Размер звезды */
-    height: 50px; /* Размер звезды */
+    width: 40px; /* Размер звезды после уменьшения на 20% */
+    height: 40px; /* Размер звезды после уменьшения на 20% */
     background: url('/signals/assets/star.png') no-repeat center center / cover;
     opacity: 0; /* Скрываем звезду по умолчанию */
     transition: opacity 1s; /* Плавный переход для появления звезды */
