@@ -30,19 +30,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Функция для выбора 5 случайных плиток
     function getRandomTiles() {
-        const selectedTiles = [];
-        const tileIndices = Array.from({ length: totalTiles }, (_, i) => i); // Массив индексов плиток
+        const selectedTiles = new Set();
 
-        // Перемешиваем массив индексов плиток
-        for (let i = tileIndices.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [tileIndices[i], tileIndices[j]] = [tileIndices[j], tileIndices[i]];
+        while (selectedTiles.size < tilesToOpen) {
+            const randomIndex = Math.floor(Math.random() * totalTiles);
+            selectedTiles.add(randomIndex); // Добавляем случайный индекс
         }
 
-        // Берем первые 5 случайных плиток
-        selectedTiles.push(...tileIndices.slice(0, tilesToOpen));
-
-        return selectedTiles;
+        return Array.from(selectedTiles); // Возвращаем массив уникальных индексов плиток
     }
 
     // Обработчик события нажатия на кнопку
