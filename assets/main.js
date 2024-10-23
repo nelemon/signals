@@ -13,8 +13,10 @@ document.addEventListener("DOMContentLoaded", () => {
             tile.classList.remove("fade-out", "star");
         });
 
+        // Скрываем звезды сразу
         Array.from(starsContainer.children).forEach(star => {
-            star.style.opacity = 0; // Скрываем звезды сразу
+            star.style.opacity = 0; // Скрываем звезды
+            star.classList.remove("show-star"); // Убираем класс анимации
         });
     }
 
