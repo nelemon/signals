@@ -6,25 +6,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const tileFadeDuration = 1000; // Продолжительность анимации исчезновения
     const tileDelay = 500; // Интервал между анимациями плиток
 
-    // Создание плиток
-    for (let i = 0; i < totalTiles; i++) {
-        const tile = document.createElement("div");
-        tile.classList.add("tile");
-        tile.setAttribute("data-index", i);
-        
-        const star = document.createElement("div");
-        star.classList.add("star");
-        
-        tile.appendChild(star);
-        tileGrid.appendChild(tile);
-    }
-
     function resetTiles() {
         // Сбрасываем состояние всех плиток
-        Array.from(tileGrid.children).forEach(tile => {
-            tile.classList.remove("fade-out");
-            const star = tile.querySelector(".star");
-            star.style.opacity = 0; // Убираем звезду по умолчанию
+        Array.from(tileGrid.children).forEach((child, index) => {
+            if (child.classList.contains("tile")) {
+                child.classList.remove("fade-out");
+            } else {
+                child.style.display = "none"; // Скрываем звезды
+            }
         });
     }
 
@@ -54,9 +43,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 const tile = tileGrid.children[tileIndex];
                 tile.classList.add("fade-out"); // Запускаем анимацию исчезновения
 
-                // Сразу показываем звезду
-                const star = tile.querySelector(".star");
-                star.style.opacity = 1; // Звезда становится видимой
+                // Показать звезду под плиткой
+                const star = tileGrid.children[tileIndex + totalTiles]; // Звезда будет сразу под плиткой
+                star.style.display = "block"; // Показываем звезду
 
                 if (i === tilesToOpen - 1) {
                     // Активируем кнопку после завершения последней анимации
