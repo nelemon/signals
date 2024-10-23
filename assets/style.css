@@ -50,7 +50,8 @@ body {
     background: url('/signals/assets/star.png') no-repeat center center / cover; /* Фоновое изображение звезды */
     opacity: 0; /* Скрываем звезду по умолчанию */
     transition: opacity 1s; /* Плавный переход для появления звезды */
-    align-self: center; /* Центрируем звезды внутри сетки */
+    justify-self: center; /* Центрируем звезды в сетке */
+    align-self: center; /* Центрируем звезды в сетке */
 }
 
 /* Стили для кнопки с изображением */
