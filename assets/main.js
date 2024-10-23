@@ -41,22 +41,21 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }
 
-        // Анимация исчезновения плиток
+        // Анимация исчезновения плиток и появления звезд
         openedTiles.forEach((tileIndex, i) => {
             setTimeout(() => {
                 const tile = tileGrid.children[tileIndex];
                 tile.classList.add("fade-out"); // Запускаем анимацию исчезновения
-                setTimeout(() => {
-                    tile.classList.add("star"); // Добавляем класс star к плитке
-                    const star = starsContainer.children[tileIndex]; // Получаем звезду с тем же индексом
-                    star.style.opacity = 1; // Показываем звезду
-                    star.classList.add("show-star"); // Добавляем класс для анимации появления звезды
 
-                    if (i === tilesToOpen - 1) {
-                        // Активируем кнопку после завершения последней анимации
-                        toggleButtonState(false);
-                    }
-                }, tileFadeDuration); // Ждем завершения анимации исчезновения
+                // Получаем звезду с тем же индексом
+                const star = starsContainer.children[tileIndex];
+                star.style.opacity = 1; // Показываем звезду
+                star.classList.add("show-star"); // Добавляем класс для анимации появления звезды
+
+                if (i === tilesToOpen - 1) {
+                    // Активируем кнопку после завершения последней анимации
+                    toggleButtonState(false);
+                }
             }, i * tileDelay); // Интервал между анимациями плиток
         });
     });
