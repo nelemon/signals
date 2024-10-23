@@ -9,14 +9,16 @@ document.addEventListener("DOMContentLoaded", () => {
     function resetTiles() {
         // Сбрасываем состояние всех плиток
         Array.from(tileGrid.children).forEach(tile => {
-            tile.classList.remove("fade-out", "star");
+            tile.classList.remove("fade-out");
+            const star = tile.querySelector(".star");
+            star.classList.remove("visible");
         });
     }
 
     function toggleButtonState(isDisabled) {
         // Управляем состоянием кнопки
         getSignalButton.disabled = isDisabled;
-        getSignalButton.style.backgroundColor = isDisabled ? "#cccccc" : ""; // Меняем цвет кнопки
+        getSignalButton.style.backgroundColor = isDisabled ? "#cccccc" : "";
         getSignalButton.style.cursor = isDisabled ? "not-allowed" : "pointer";
     }
 
@@ -38,8 +40,10 @@ document.addEventListener("DOMContentLoaded", () => {
             setTimeout(() => {
                 const tile = tileGrid.children[tileIndex];
                 tile.classList.add("fade-out"); // Запускаем анимацию исчезновения
+
                 setTimeout(() => {
-                    tile.classList.add("star"); // Заменяем на звезду после исчезновения
+                    const star = tile.querySelector(".star");
+                    star.classList.add("visible"); // Показываем звезду после исчезновения плитки
                     if (i === tilesToOpen - 1) {
                         // Активируем кнопку после завершения последней анимации
                         toggleButtonState(false);
