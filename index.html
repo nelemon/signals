@@ -8,20 +8,23 @@
 </head>
 <body>
     <div class="container">
-        <div class="grid" id="tileGrid">
-            <!-- Генерация 25 плиток -->
-            <script>
-                for (let i = 0; i < 25; i++) {
-                    document.write(`<div class="tile" data-index="${i}"></div>`);
-                }
-            </script>
-        </div>
-        <div class="stars-container">
-            <script>
-                for (let i = 0; i < 25; i++) {
-                    document.write(`<div class="star" data-index="${i}"></div>`);
-                }
-            </script>
+        <!-- Добавляем фоновое изображение для плиток -->
+        <div class="background">
+            <div class="grid" id="tileGrid">
+                <!-- Генерация 25 плиток -->
+                <script>
+                    for (let i = 0; i < 25; i++) {
+                        document.write(`<div class="tile" data-index="${i}"></div>`);
+                    }
+                </script>
+            </div>
+            <div class="stars-container">
+                <script>
+                    for (let i = 0; i < 25; i++) {
+                        document.write(`<div class="star" data-index="${i}"></div>`);
+                    }
+                </script>
+            </div>
         </div>
         <button id="getSignalButton">
             <img src="/signals/assets/getSignal.png" alt="Получить сигнал">
