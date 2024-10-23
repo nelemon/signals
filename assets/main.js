@@ -22,8 +22,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const getSignalButton = document.getElementById("getSignalButton");
     const totalTiles = 25; // Общее количество плиток
     const tilesToOpen = 5; // Количество плиток, которые будут открыты
-    const tileFadeDuration = 400; // Продолжительность анимации исчезновения
-    const tileDelay = 800; // Интервал между анимациями плиток
+    const tileFadeDuration = 200; // Продолжительность анимации исчезновения
+    const tileDelay = 500; // Интервал между анимациями плиток
     const buttonInactiveDuration = 1000; // 1 секунды неактивности кнопки
 
     // Хранит уже открытые плитки
