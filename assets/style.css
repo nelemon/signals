@@ -12,6 +12,17 @@ body {
     text-align: center;
 }
 
+.background {
+    position: absolute; /* Позволяет фону находиться под плитками */
+    width: 250px; /* Ширина фона (5 плиток по 50px) */
+    height: 250px; /* Высота фона (5 плиток по 50px) */
+    background-color: #cccccc; /* Серый цвет фона */
+    z-index: -1; /* Убедитесь, что фон находится позади плиток */
+    top: 0; /* Выравнивание по верхнему краю */
+    left: 0; /* Выравнивание по левому краю */
+    border-radius: 10px; /* Закругление углов (по желанию) */
+}
+
 .grid {
     display: grid;
     grid-template-columns: repeat(5, 50px);
