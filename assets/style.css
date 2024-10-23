@@ -10,7 +10,6 @@ body {
 .container {
     position: relative; /* Для позиционирования дочерних элементов */
     text-align: center;
-    margin: 0; /* Убедитесь, что отступы по умолчанию не влияют на позиционирование */
 }
 
 /* Фон, который будет под плитками */
@@ -55,8 +54,8 @@ body {
 }
 
 .star {
-    width: 40px; /* Размер звезды (уменьшено на 20%) */
-    height: 40px; /* Размер звезды (уменьшено на 20%) */
+    width: 40px; /* Уменьшение звезд на 20% */
+    height: 40px; /* Уменьшение звезд на 20% */
     background: url('/signals/assets/star.png') no-repeat center center / cover;
     opacity: 0; /* Скрываем звезду по умолчанию */
     transition: opacity 1s; /* Плавный переход для появления звезды */
@@ -68,6 +67,7 @@ button {
     border: none;
     padding: 0;
     cursor: pointer;
+    margin-top: 30px; /* Сместим кнопку вниз на 30px */
 }
 
 /* Стили для изображения кнопки */
@@ -96,10 +96,9 @@ button:disabled img {
 /* Анимация плавного исчезновения */
 @keyframes fadeOut {
     from { opacity: 1; }
-    to { opacity: 0;
-    }
+    to { opacity: 0; }
 }
 
 .fade-out {
-    animation: fadeOut 1s forwards; /* Анимация исчезновения */
+    animation: fadeOut 0.5s forwards; /* Сокращено время исчезновения плиток в 2 раза */
 }
