@@ -17,10 +17,11 @@ body {
     grid-template-rows: repeat(5, 50px);
     gap: 5px;
     margin-bottom: 20px;
+    position: relative; /* Для правильного размещения звезд */
 }
 
 .tile {
-    position: relative; /* Для правильного размещения слоев */
+    position: relative; /* Для правильного размещения звезд */
     width: 50px;
     height: 50px;
     background: url('/signals/assets/plitka.png') no-repeat center center / cover;
@@ -33,20 +34,14 @@ body {
 }
 
 /* Слой звезды */
-.tile .star {
+.star {
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    width: 50px; /* Ширина звезды */
+    height: 50px; /* Высота звезды */
     background: url('/signals/assets/star.png') no-repeat center center / cover;
-    opacity: 0; /* По умолчанию звезда невидима */
-    transition: opacity 0s; /* Без анимации для звезды */
-}
-
-/* Звезда становится видимой при исчезновении плитки */
-.tile.fade-out .star {
-    opacity: 1; /* Звезда становится видимой без анимации */
+    opacity: 1; /* Звезда по умолчанию видима */
 }
 
 /* Стили для кнопки с изображением */
