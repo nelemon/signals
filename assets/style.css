@@ -14,8 +14,8 @@ body {
 
 .background {
     position: absolute; /* Позволяет фону находиться под плитками */
-    width: 250px; /* Ширина фона (5 плиток по 50px) */
-    height: 250px; /* Высота фона (5 плиток по 50px) */
+    width: 270px; /* Ширина фона (5 плиток по 50px + 4 отступа по 5px) */
+    height: 270px; /* Высота фона (5 плиток по 50px + 4 отступа по 5px) */
     background-color: #cccccc; /* Серый цвет фона */
     z-index: -1; /* Убедитесь, что фон находится позади плиток */
     top: 0; /* Выравнивание по верхнему краю */
@@ -29,7 +29,7 @@ body {
     grid-template-columns: repeat(5, 50px); /* 5 колонок по 50px */
     grid-template-rows: repeat(5, 50px); /* 5 рядов по 50px */
     gap: 5px; /* Промежуток между плитками */
-    margin-bottom: 20px;
+    margin-bottom: 20px; /* Отступ снизу */
 }
 
 .tile {
