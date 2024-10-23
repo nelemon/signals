@@ -26,6 +26,11 @@ body {
     z-index: -1; /* Помещаем фон за плитками */
 }
 
+/* Сдвиньте фон выше на 30 пикселей */
+.background {
+    top: calc(50% - 30px); /* Переместим фон выше на 30px */
+}
+
 .grid {
     display: grid;
     grid-template-columns: repeat(5, 50px);
