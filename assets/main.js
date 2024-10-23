@@ -8,6 +8,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const tileDelay = 500; // Интервал между анимациями плиток
     const buttonInactiveDuration = 2000; // 2 секунды неактивности кнопки
 
+    let openedTiles = new Set(); // Хранит уже открытые плитки
+
     // Функция сброса состояния плиток и звезд
     function resetTiles() {
         Array.from(tileGrid.children).forEach(tile => {
@@ -43,13 +45,23 @@ document.addEventListener("DOMContentLoaded", () => {
         resetTiles(); // Сбрасываем состояние плиток и звезд
         toggleButtonState(true); // Блокируем кнопку
 
-        // Получаем уникальные индексы
-        const openedTiles = getUniqueRandomIndexes(tilesToOpen, totalTiles);
+        // Получаем уникальные индексы, исключая уже открытые плитки
+        const availableTiles = Array.from({ length: totalTiles }, (_, i) => i).filter(i => !openedTiles.has(i));
+        
+        // Если доступных плиток недостаточно, очищаем список открытых плиток
+        if (availableTiles.length < tilesToOpen) {
+            openedTiles.clear(); // Сбрасываем открытые плитки
+        }
 
-        console.log("Открытые плитки:", openedTiles); // Отладочное сообщение
+        const openedTilesThisRound = getUniqueRandomIndexes(tilesToOpen, availableTiles.length).map(i => availableTiles[i]);
+
+        console.log("Открытые плитки:", openedTilesThisRound); // Отладочное сообщение
+
+        // Добавляем открытые плитки в общий список
+        openedTiles = new Set([...openedTiles, ...openedTilesThisRound]);
 
         // Анимация исчезновения плиток и появления звезд
-        openedTiles.forEach((tileIndex, i) => {
+        openedTilesThisRound.forEach((tileIndex, i) => {
             setTimeout(() => {
                 const tile = tileGrid.children[tileIndex];
                 tile.classList.add("fade-out"); // Запускаем анимацию исчезновения
