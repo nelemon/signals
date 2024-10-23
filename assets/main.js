@@ -51,6 +51,8 @@ document.addEventListener("DOMContentLoaded", () => {
             setTimeout(() => {
                 const tile = tileGrid.children[tileIndex];
                 tile.classList.add("fade-out"); // Запускаем анимацию исчезновения
+                const star = tile.querySelector(".star");
+                star.style.opacity = 1; // Сразу показываем звезду
 
                 if (i === tilesToOpen - 1) {
                     // Активируем кнопку после завершения последней анимации
