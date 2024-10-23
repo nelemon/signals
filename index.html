@@ -8,12 +8,21 @@
 </head>
 <body>
     <div class="container">
-        <div class="background"></div> <!-- Фон под плитками -->
+        <div class="background"></div> <!-- Добавлен фон -->
         <div class="grid" id="tileGrid">
             <!-- Генерация 25 плиток -->
+            <script>
+                for (let i = 0; i < 25; i++) {
+                    document.write(`<div class="tile" data-index="${i}"></div>`); // Обратите внимание на кавычки
+                }
+            </script>
         </div>
         <div class="stars-container">
-            <!-- Генерация 25 звезд -->
+            <script>
+                for (let i = 0; i < 25; i++) {
+                    document.write(`<div class="star" data-index="${i}"></div>`); // Обратите внимание на кавычки
+                }
+            </script>
         </div>
         <button id="getSignalButton">
             <img src="/signals/assets/getSignal.png" alt="Получить сигнал">
