@@ -8,14 +8,19 @@
 </head>
 <body>
     <div class="container">
-    <div class="grid" id="tileGrid">
-        <!-- Плитки будут добавлены через JavaScript -->
+        <div class="grid" id="tileGrid">
+            <!-- Генерация 25 плиток и 25 звезд -->
+            <script>
+                for (let i = 0; i < 25; i++) {
+                    document.write(`<div class="tile" data-index="${i}"></div>`);
+                    document.write(`<div class="star" style="display: none;"></div>`); // Скрытые звезды
+                }
+            </script>
+        </div>
+        <button id="getSignalButton">
+            <img src="/signals/assets/getSignal.png" alt="Получить сигнал">
+        </button>
     </div>
-    <button id="getSignalButton">
-        <img src="/signals/assets/getSignal.png" alt="Получить сигнал">
-    </button>
-</div>
-<script src="assets/main.js"></script>
-
+    <script src="assets/main.js"></script>
 </body>
 </html>
