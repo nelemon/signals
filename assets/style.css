@@ -5,10 +5,10 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
-    flex-direction: column; /* Добавлено для правильного размещения контейнеров */
 }
 
 .container {
+    position: relative; /* Для позиционирования дочерних элементов */
     text-align: center;
 }
 
@@ -28,7 +28,6 @@ body {
     cursor: pointer;
 }
 
-/* Стили для контейнера звезд */
 .stars-container {
     display: grid;
     grid-template-columns: repeat(5, 50px);
@@ -45,10 +44,6 @@ body {
     background: url('/signals/assets/star.png') no-repeat center center / cover;
     opacity: 0; /* Скрываем звезду по умолчанию */
     transition: opacity 1s; /* Плавный переход для видимости звезды */
-}
-
-.tile.star ~ .star[data-index="${index}"] {
-    opacity: 1; /* Показываем звезду, когда плитка имеет класс star */
 }
 
 /* Стили для кнопки с изображением */
