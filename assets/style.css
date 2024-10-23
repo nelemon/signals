@@ -19,6 +19,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 1; /* Контейнер с плитками выше фона */
 }
 
 .background {
@@ -34,6 +35,7 @@ body {
     grid-template-columns: repeat(5, 50px);
     grid-template-rows: repeat(5, 50px);
     gap: 5px;
+    z-index: 1; /* Плитки выше фона */
 }
 
 .stars-container {
@@ -44,11 +46,12 @@ body {
     position: absolute;
     top: 0;
     left: 0;
+    z-index: 2; /* Звёзды выше плиток */
 }
 
 .star {
-    position: absolute; /* Позиционируем звезду внутри плитки */
-    width: 40px; /* Звёзды на 20% меньше */
+    position: absolute;
+    width: 40px; /* Звезды на 20% меньше */
     height: 40px;
     top: 50%;
     left: 50%;
@@ -64,6 +67,7 @@ button {
     border: none;
     padding: 0;
     cursor: pointer;
+    z-index: 3; /* Кнопка выше всего */
 }
 
 button img {
