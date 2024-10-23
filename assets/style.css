@@ -25,7 +25,7 @@ body {
     height: 50px;
     background: url('/signals/assets/plitka.png') no-repeat center center / cover;
     cursor: pointer;
-    transition: opacity 1s; /* Плавное исчезновение плитки */
+    transition: opacity 1s ease-in-out; /* Плавное исчезновение плитки */
 }
 
 .tile.fade-out {
@@ -41,11 +41,12 @@ body {
     height: 100%;
     background: url('/signals/assets/star.png') no-repeat center center / cover;
     opacity: 0; /* По умолчанию звезда невидима */
+    transition: opacity 0s; /* Без анимации для звезды */
 }
 
 /* Звезда становится видимой при исчезновении плитки */
 .tile.fade-out .star {
-    opacity: 1; /* Звезда становится видимой */
+    opacity: 1; /* Звезда становится видимой без анимации */
 }
 
 /* Стили для кнопки с изображением */
