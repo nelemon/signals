@@ -27,19 +27,23 @@ document.addEventListener("DOMContentLoaded", () => {
         getSignalButton.style.cursor = isDisabled ? "not-allowed" : "pointer";
     }
 
+    // Функция для перемешивания массива
+    function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+    }
+
     // Обработчик события нажатия на кнопку
     getSignalButton.addEventListener("click", () => {
         resetTiles(); // Сбрасываем состояние плиток и звезд
         toggleButtonState(true); // Блокируем кнопку
 
-        // Выбираем случайные 5 плиток
-        let openedTiles = [];
-        while (openedTiles.length < tilesToOpen) {
-            const randomIndex = Math.floor(Math.random() * totalTiles);
-            if (!openedTiles.includes(randomIndex)) {
-                openedTiles.push(randomIndex);
-            }
-        }
+        // Создаем массив индексов от 0 до 24 и перемешиваем его
+        const indexes = shuffleArray(Array.from({ length: totalTiles }, (_, i) => i));
+        const openedTiles = indexes.slice(0, tilesToOpen); // Берем первые 5 уникальных индексов
 
         // Анимация исчезновения плиток и появления звезд
         openedTiles.forEach((tileIndex, i) => {
