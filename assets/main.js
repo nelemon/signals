@@ -14,11 +14,11 @@ document.addEventListener("DOMContentLoaded", () => {
     // Функция сброса состояния плиток и звезд
     function resetTiles() {
         Array.from(tileGrid.children).forEach(tile => {
-            tile.classList.remove("fade-out");
+            tile.classList.remove("fade-out", "star");
         });
 
         // Скрываем звезды сразу
-        Array.from(starsContainer.children).forEach(star => {
+        Array.from(tileGrid.querySelectorAll('.star')).forEach(star => {
             star.style.opacity = 0; // Скрываем звезды
             star.classList.remove("show-star"); // Убираем класс анимации
         });
@@ -64,29 +64,3 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (!openedTilesThisRound) {
             toggleButtonState(false); // Активируем кнопку
-            return;
-        }
-
-        openedTiles = new Set([...openedTiles, ...openedTilesThisRound]);
-
-        console.log("Открытые плитки:", openedTilesThisRound); // Отладочное сообщение
-
-        // Анимация исчезновения плиток и появления звезд
-        openedTilesThisRound.forEach((tileIndex, i) => {
-            setTimeout(() => {
-                const tile = tileGrid.children[tileIndex];
-                tile.classList.add("fade-out"); // Запускаем анимацию исчезновения
-
-                const star = starsContainer.children[tileIndex];
-                star.style.opacity = 1; // Показываем звезду
-                star.classList.add("show-star"); // Добавляем класс для анимации появления звезды
-
-                if (i === tilesToOpen - 1) {
-                    setTimeout(() => {
-                        toggleButtonState(false); // Активируем кнопку
-                    }, buttonInactiveDuration);
-                }
-            }, i * tileDelay); // Интервал между анимациями плиток
-        });
-    });
-});
