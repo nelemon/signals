@@ -1,5 +1,5 @@
 body {
-    background-color: #ffffff;
+    background-color: #ffffff; /* Белый цвет */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -8,7 +8,7 @@ body {
 }
 
 .container {
-    position: relative;
+    position: relative; /* Для позиционирования дочерних элементов */
     text-align: center;
 }
 
@@ -18,43 +18,36 @@ body {
     grid-template-rows: repeat(5, 50px);
     gap: 5px;
     margin-bottom: 20px;
-    background: url('/signals/assets/backgroundPlitki.png') no-repeat center center / cover;
-    padding: 10px;
-    border-radius: 10px;
-    position: relative;
+    background: url('/signals/assets/backgroundPlitki.png') no-repeat center center / cover; /* Добавляем фон */
+    padding: 10px; /* Добавляем отступы для правильного отображения */
+    border-radius: 10px; /* Скругляем углы, если нужно */
 }
 
 .tile {
-    display: grid;
-    place-items: center; /* Центрирование содержимого по вертикали и горизонтали */
+    position: relative; /* Для позиционирования звезды */
     width: 50px;
     height: 50px;
     background: url('/signals/assets/plitka.png') no-repeat center center / cover;
     cursor: pointer;
 }
 
-
 .stars-container {
-    position: absolute; /* Фиксируем звезды над плитками */
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
     display: grid;
     grid-template-columns: repeat(5, 50px);
     grid-template-rows: repeat(5, 50px);
     gap: 5px;
-    pointer-events: none; /* Чтобы клики проходили через звезды */
+    position: absolute; /* Позиционируем контейнер с звездами */
+    top: 0; /* Смотрим, чтобы звезды находились на месте плиток */
+    left: 0;
 }
 
 .star {
-    width: 30px; /* Размер звезды */
-    height: 30px; /* Размер звезды */
-    background: url('/signals/assets/star.png') no-repeat center center / contain;
-    opacity: 0;
-    transition: opacity 1s;
+    width: 50px; /* Размер звезды */
+    height: 50px; /* Размер звезды */
+    background: url('/signals/assets/star.png') no-repeat center center / cover;
+    opacity: 0; /* Скрываем звезду по умолчанию */
+    transition: opacity 1s; /* Плавный переход для появления звезды */
 }
-
 
 /* Стили для кнопки с изображением */
 button {
@@ -64,31 +57,35 @@ button {
     cursor: pointer;
 }
 
+/* Стили для изображения кнопки */
 button img {
-    width: 150px;
+    width: 150px; /* Установите нужные размеры для изображения */
     height: auto;
     display: block;
 }
 
+/* Стили для неактивного состояния кнопки */
 button:disabled img {
-    opacity: 0.5;
+    opacity: 0.5; /* Прозрачность для темного эффекта */
     cursor: not-allowed;
 }
 
+/* Анимация плавного появления звезд */
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
 }
 
 .show-star {
-    animation: fadeIn 1s forwards;
+    animation: fadeIn 1s forwards; /* Анимация появления */
 }
 
+/* Анимация плавного исчезновения */
 @keyframes fadeOut {
     from { opacity: 1; }
     to { opacity: 0; }
 }
 
 .fade-out {
-    animation: fadeOut 1s forwards;
+    animation: fadeOut 1s forwards; /* Анимация исчезновения */
 }
