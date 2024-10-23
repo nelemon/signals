@@ -43,6 +43,7 @@ body {
     height: 50px; /* Размер звезды */
     background: url('/signals/assets/star.png') no-repeat center center / cover;
     opacity: 0; /* Скрываем звезду по умолчанию */
+    transition: opacity 1s; /* Плавный переход для появления звезды */
 }
 
 /* Стили для кнопки с изображением */
@@ -64,6 +65,16 @@ button img {
 button:disabled img {
     opacity: 0.5; /* Прозрачность для темного эффекта */
     cursor: not-allowed;
+}
+
+/* Анимация плавного появления звезд */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.show-star {
+    animation: fadeIn 1s forwards; /* Анимация появления */
 }
 
 /* Анимация плавного исчезновения */
