@@ -12,54 +12,41 @@ body {
     text-align: center;
 }
 
-/* Изменяем блок с фоновым изображением */
-.background {
-    width: 510px; /* Ширина 5 плиток по 100px + 4 промежутка по 5px */
-    height: 510px; /* Высота 5 плиток по 100px + 4 промежутка по 5px */
-    background: url('/signals/assets/backgroundPlitki.png') no-repeat center center / contain;
-    position: relative;
-    display: flex; /* Используем flex для центрирования */
-    justify-content: center;
-    align-items: center;
-    margin: 0 auto; /* Центрируем фон по горизонтали */
-}
-
 .grid {
     display: grid;
-    grid-template-columns: repeat(5, 100px); /* Размер плиток */
-    grid-template-rows: repeat(5, 100px);
+    grid-template-columns: repeat(5, 50px);
+    grid-template-rows: repeat(5, 50px);
     gap: 5px;
-    position: relative; /* Теперь плитки располагаются внутри фона */
+    margin-bottom: 20px;
+    background: url('/signals/assets/backgroundPlitki.png') no-repeat center center / cover; /* Добавляем фон */
+    padding: 10px; /* Добавляем отступы для правильного отображения */
+    border-radius: 10px; /* Скругляем углы, если нужно */
 }
 
 .tile {
-    width: 100px; /* Размер плитки */
-    height: 100px;
+    position: relative; /* Для позиционирования звезды */
+    width: 50px;
+    height: 50px;
     background: url('/signals/assets/plitka.png') no-repeat center center / cover;
     cursor: pointer;
-    position: relative;
 }
 
 .stars-container {
     display: grid;
-    grid-template-columns: repeat(5, 100px); /* Размер под плитки */
-    grid-template-rows: repeat(5, 100px);
+    grid-template-columns: repeat(5, 50px);
+    grid-template-rows: repeat(5, 50px);
     gap: 5px;
-    position: absolute; /* Позиционируем звёзды точно над плитками */
-    top: 0;
+    position: absolute; /* Позиционируем контейнер с звездами */
+    top: 0; /* Смотрим, чтобы звезды находились на месте плиток */
     left: 0;
 }
 
 .star {
-    width: 80px; /* Размер звезды (на 20% меньше плитки) */
-    height: 80px;
+    width: 50px; /* Размер звезды */
+    height: 50px; /* Размер звезды */
     background: url('/signals/assets/star.png') no-repeat center center / cover;
     opacity: 0; /* Скрываем звезду по умолчанию */
     transition: opacity 1s; /* Плавный переход для появления звезды */
-    position: absolute; /* Позиционируем звезду внутри плитки */
-    top: 50%;  /* Позиционируем звезду по вертикали */
-    left: 50%; /* Позиционируем звезду по горизонтали */
-    transform: translate(-50%, -50%); /* Центрируем звезду внутри плитки */
 }
 
 /* Стили для кнопки с изображением */
@@ -75,7 +62,6 @@ button img {
     width: 150px; /* Установите нужные размеры для изображения */
     height: auto;
     display: block;
-    margin: 20px auto; /* Центрируем кнопку и отступ */
 }
 
 /* Стили для неактивного состояния кнопки */
