@@ -43,7 +43,6 @@ body {
     height: 50px; /* Размер звезды */
     background: url('/signals/assets/star.png') no-repeat center center / cover;
     opacity: 0; /* Скрываем звезду по умолчанию */
-    transition: opacity 1s; /* Плавный переход для видимости звезды */
 }
 
 /* Стили для кнопки с изображением */
