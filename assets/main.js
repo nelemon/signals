@@ -2,7 +2,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const tileGrid = document.getElementById("tileGrid");
     const starsContainer = document.querySelector('.stars-container');
     
-    // Генерация плиток
     for (let i = 0; i < 25; i++) {
         const tile = document.createElement('div');
         tile.classList.add('tile');
@@ -10,7 +9,6 @@ document.addEventListener("DOMContentLoaded", () => {
         tileGrid.appendChild(tile);
     }
 
-    // Генерация звезд
     for (let i = 0; i < 25; i++) {
         const star = document.createElement('div');
         star.classList.add('star');
@@ -19,16 +17,14 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const getSignalButton = document.getElementById("getSignalButton");
-    const totalTiles = 25; // Общее количество плиток
-    const tilesToOpen = 5; // Количество плиток, которые будут открыты
-    const tileFadeDuration = 500; // Продолжительность анимации исчезновения
-    const tileDelay = 500; // Интервал между анимациями плиток
+    const totalTiles = 25;
+    const tilesToOpen = 5;
+    const tileFadeDuration = 500;
+    const tileDelay = 500;
+    const buttonInactiveDuration = 1000;
 
-    const buttonInactiveDuration = (tilesToOpen - 1) * tileDelay + tileFadeDuration; 
+    let openedTiles = new Set();
 
-    let openedTiles = new Set();  // Хранит уже открытые плитки
-
-    // Функция сброса состояния плиток и звезд
     function resetTiles() {
         Array.from(tileGrid.children).forEach(tile => {
             tile.classList.remove("fade-out");
@@ -40,21 +36,22 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Функция управления состоянием кнопки
     function toggleButtonState(isDisabled) {
         getSignalButton.disabled = isDisabled;
         getSignalButton.style.backgroundColor = isDisabled ? "#cccccc" : ""; 
         getSignalButton.style.cursor = isDisabled ? "not-allowed" : "pointer";
     }
 
-    // Функция для выбора случайных плиток
     function getRandomTiles() {
         const availableTiles = Array.from({ length: totalTiles }, (_, i) => i).filter(i => !openedTiles.has(i));
 
         if (availableTiles.length < tilesToOpen) {
             console.warn("Недостаточно плиток для открытия, сбрасываем состояние.");
+            resetTiles();
             openedTiles.clear();
-            return null;
+
+            // После сброса нужно снова выбрать плитки для открытия
+            return getRandomTiles(); // Повторяем вызов, чтобы снова получить плитки
         }
 
         const selectedTiles = [];
@@ -70,21 +67,21 @@ document.addEventListener("DOMContentLoaded", () => {
         return selectedTiles;
     }
 
-    // Основной обработчик кнопки
     getSignalButton.addEventListener("click", () => {
-        toggleButtonState(true); // Блокируем кнопку
+        resetTiles(); 
+        toggleButtonState(true); 
 
         const openedTilesThisRound = getRandomTiles();
+
         if (!openedTilesThisRound) {
-            // Недостаточно плиток для открытия, активируем кнопку
             toggleButtonState(false);
             return;
         }
 
-        // Обновляем список открытых плиток
         openedTiles = new Set([...openedTiles, ...openedTilesThisRound]);
 
-        // Анимация исчезновения плиток и появления звезд
+        console.log("Открытые плитки:", openedTilesThisRound);
+
         openedTilesThisRound.forEach((tileIndex, i) => {
             setTimeout(() => {
                 const tile = tileGrid.children[tileIndex];
@@ -95,17 +92,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 star.classList.add("show-star");
 
                 if (i === tilesToOpen - 1) {
-                    // После завершения анимаций плиток
                     setTimeout(() => {
-                        toggleButtonState(false); // Активируем кнопку после завершения всех анимаций
+                        toggleButtonState(false);
                     }, buttonInactiveDuration);
                 }
             }, i * tileDelay);
         });
-
-        // Теперь сбрасываем плитки и звезды только после того, как все действия завершены
-        setTimeout(() => {
-            resetTiles(); // Сбрасываем плитки и звезды после всех анимаций
-        }, buttonInactiveDuration + 500); // + 500ms для плавного завершения
     });
 });
