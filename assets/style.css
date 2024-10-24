@@ -17,12 +17,15 @@ body {
     position: absolute; /* Позиционируем фон абсолютно */
     top: -20px; /* Устанавливаем фон на 20px выше плиток */
     left: -20px; /* Устанавливаем фон на 20px левее плиток */
-    width: calc(5 * 50px + 4 * 5px + 40px); /* Ширина фона: 5 плиток по 50px + 4 промежутка по 5px + 40px (20px с каждой стороны) */
-    height: calc(5 * 50px + 4 * 5px + 40px); /* Высота фона: 5 плиток по 50px + 4 промежутка по 5px + 40px (20px сверху и снизу) */
-    background-color: rgba(192, 192, 192, 0.5); /* Серый фон с небольшой прозрачностью */
+    width: calc(5 * 50px + 4 * 5px + 40px); /* Ширина фона */
+    height: calc(5 * 50px + 4 * 5px + 40px); /* Высота фона */
+    background-image: url('/signals/assets/backgroundPlitki.png'); /* Заменяем серый фон на изображение */
+    background-size: cover; /* Обеспечивает покрытие всего блока изображением */
+    background-repeat: no-repeat; /* Запрещает повторение изображения */
     z-index: -1; /* Помещаем фон за плитками */
     border-radius: 10px; /* Углы фона (по желанию) */
 }
+
 
 .grid {
     display: grid;
