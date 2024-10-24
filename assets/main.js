@@ -18,17 +18,16 @@ document.addEventListener("DOMContentLoaded", () => {
         starsContainer.appendChild(star);
     }
 
-    // Остальной ваш код
     const getSignalButton = document.getElementById("getSignalButton");
     const totalTiles = 25; // Общее количество плиток
     const tilesToOpen = 5; // Количество плиток, которые будут открыты
     const tileFadeDuration = 500; // Продолжительность анимации исчезновения
     const tileDelay = 500; // Интервал между анимациями плиток
-    const buttonInactiveDuration = 1000; // 1 секунды неактивности кнопки
 
-    // Хранит уже открытые плитки
-    let openedTiles = new Set();
-    let tilesOpening = false; // Флаг для отслеживания процесса открытия плиток
+    // Пересчитанное время блокировки кнопки
+    const buttonInactiveDuration = (tilesToOpen - 1) * tileDelay + tileFadeDuration + 1000; // 1000 - небольшая задержка для плавности
+
+    let openedTiles = new Set();  // Хранит уже открытые плитки
 
     // Функция сброса состояния плиток и звезд
     function resetTiles() {
@@ -36,31 +35,28 @@ document.addEventListener("DOMContentLoaded", () => {
             tile.classList.remove("fade-out");
         });
 
-        // Скрываем звезды сразу
         Array.from(starsContainer.children).forEach(star => {
-            star.style.opacity = 0; // Скрываем звезды
-            star.classList.remove("show-star"); // Убираем класс анимации
+            star.style.opacity = 0;
+            star.classList.remove("show-star");
         });
     }
 
     // Функция управления состоянием кнопки
     function toggleButtonState(isDisabled) {
         getSignalButton.disabled = isDisabled;
-        getSignalButton.style.backgroundColor = isDisabled ? "#cccccc" : ""; // Меняем цвет кнопки
+        getSignalButton.style.backgroundColor = isDisabled ? "#cccccc" : ""; 
         getSignalButton.style.cursor = isDisabled ? "not-allowed" : "pointer";
     }
 
-    // Функция для выбора плиток
+    // Функция для выбора случайных плиток
     function getRandomTiles() {
-        // Создаем массив всех доступных плиток, которые еще не открыты
         const availableTiles = Array.from({ length: totalTiles }, (_, i) => i).filter(i => !openedTiles.has(i));
 
-        // Проверяем, достаточно ли плиток
         if (availableTiles.length < tilesToOpen) {
             console.warn("Недостаточно плиток для открытия, сбрасываем состояние.");
             resetTiles();
-            openedTiles.clear(); // Очищаем список открытых плиток
-            return null; // Вернем null, если недостаточно плиток
+            openedTiles.clear();
+            return null;
         }
 
         const selectedTiles = [];
@@ -68,7 +64,6 @@ document.addEventListener("DOMContentLoaded", () => {
             const randomIndex = Math.floor(Math.random() * availableTiles.length);
             const tileIndex = availableTiles[randomIndex];
 
-            // Если плитка еще не была открыта, добавляем её в список открытых плиток
             if (!selectedTiles.includes(tileIndex)) {
                 selectedTiles.push(tileIndex);
             }
@@ -77,48 +72,39 @@ document.addEventListener("DOMContentLoaded", () => {
         return selectedTiles;
     }
 
-    // Обработчик события нажатия на кнопку
+    // Основной обработчик кнопки
     getSignalButton.addEventListener("click", () => {
-        // Если плитки уже открываются, блокируем дальнейшие действия
-        if (tilesOpening) return;
-
-        resetTiles(); // Сбрасываем состояние плиток и звезд
         toggleButtonState(true); // Блокируем кнопку
-        tilesOpening = true; // Устанавливаем флаг для блокировки повторного нажатия
+
+        // Сбрасываем плитки и звезды
+        resetTiles();
 
         const openedTilesThisRound = getRandomTiles();
-
-        // Если недостаточно плиток, просто возвращаем
         if (!openedTilesThisRound) {
-            toggleButtonState(false); // Активируем кнопку
-            tilesOpening = false; // Разрешаем дальнейшие действия
+            // Недостаточно плиток для открытия, активируем кнопку
+            toggleButtonState(false);
             return;
         }
 
         // Обновляем список открытых плиток
         openedTiles = new Set([...openedTiles, ...openedTilesThisRound]);
 
-        console.log("Открытые плитки:", openedTilesThisRound); // Отладочное сообщение
-
         // Анимация исчезновения плиток и появления звезд
         openedTilesThisRound.forEach((tileIndex, i) => {
             setTimeout(() => {
                 const tile = tileGrid.children[tileIndex];
-                tile.classList.add("fade-out"); // Запускаем анимацию исчезновения
+                tile.classList.add("fade-out");
 
-                // Получаем звезду с тем же индексом
                 const star = starsContainer.children[tileIndex];
-                star.style.opacity = 1; // Показываем звезду
-                star.classList.add("show-star"); // Добавляем класс для анимации появления звезды
+                star.style.opacity = 1;
+                star.classList.add("show-star");
 
                 if (i === tilesToOpen - 1) {
-                    // После завершения последней анимации ждем 2 секунды перед активацией кнопки
                     setTimeout(() => {
-                        toggleButtonState(false); // Активируем кнопку
-                        tilesOpening = false; // Разрешаем дальнейшие действия
+                        toggleButtonState(false); // Активируем кнопку после завершения всех анимаций
                     }, buttonInactiveDuration);
                 }
-            }, i * tileDelay); // Интервал между анимациями плиток
+            }, i * tileDelay);
         });
     });
 });
