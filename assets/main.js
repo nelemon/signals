@@ -24,8 +24,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const tileFadeDuration = 500; // Продолжительность анимации исчезновения
     const tileDelay = 500; // Интервал между анимациями плиток
 
-    // Пересчитанное время блокировки кнопки
-    const buttonInactiveDuration = (tilesToOpen - 1) * tileDelay + tileFadeDuration + 1000; // 1000 - небольшая задержка для плавности
+    // Рассчитанное время блокировки кнопки без дополнительной задержки
+    const buttonInactiveDuration = (tilesToOpen - 1) * tileDelay + tileFadeDuration; 
 
     let openedTiles = new Set();  // Хранит уже открытые плитки
 
