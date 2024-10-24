@@ -1,5 +1,5 @@
 body {
-    background-color: #ffffff; /* Белый цвет */
+    background-color: #0D0924; /* Белый цвет */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -17,8 +17,8 @@ body {
     position: absolute; /* Позиционируем фон абсолютно */
     top: -20px; /* Устанавливаем фон на 20px выше плиток */
     left: -20px; /* Устанавливаем фон на 20px левее плиток */
-    width: calc(5 * 50px + 4 * 5px + 40px + 40px); /* Ширина фона с учетом отступов (20px с каждой стороны) */
-    height: calc(5 * 50px + 4 * 5px + 40px + 40px); /* Высота фона с учетом отступов (20px с каждой стороны) */
+    width: calc(5 * 50px + 4 * 5px + 40px); /* Ширина фона (без отступов) */
+    height: calc(5 * 50px + 4 * 5px + 40px); /* Высота фона (без отступов) */
     background-image: url('/signals/assets/backgroundPlitki.png'); /* Заменяем серый фон на изображение */
     background-size: cover; /* Обеспечивает покрытие всего блока изображением */
     background-repeat: no-repeat; /* Запрещает повторение изображения */
@@ -26,7 +26,10 @@ body {
     border-radius: 10px; /* Углы фона (по желанию) */
     padding: 20px; /* Добавляем отступы в 20px с каждой стороны */
     box-sizing: border-box; /* Учитываем отступы в общих размерах */
+    /* Убираем отступы с помощью отрицательных margin */
+    margin: -20px; /* Устанавливаем отрицательные отступы для корректного выравнивания */
 }
+
 
 
 
