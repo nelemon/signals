@@ -17,8 +17,8 @@ body {
     position: absolute; /* Позиционируем фон абсолютно */
     top: 0; /* Устанавливаем фон на 0px от верхней границы */
     left: 0; /* Устанавливаем фон на 0px от левой границы */
-    width: calc(5 * 50px + 4 * 5px + 60px); /* Ширина фона */
-    height: calc(5 * 50px + 4 * 5px + 60px); /* Высота фона */
+    width: calc(5 * 50px + 4 * 5px + 40px); /* Ширина фона */
+    height: calc(5 * 50px + 4 * 5px + 40px); /* Высота фона */
     background-image: url('/signals/assets/backgroundPlitki.png'); /* Заменяем серый фон на изображение */
     background-size: cover; /* Обеспечивает покрытие всего блока изображением */
     background-repeat: no-repeat; /* Запрещает повторение изображения */
