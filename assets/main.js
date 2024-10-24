@@ -24,7 +24,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const tileFadeDuration = 500; // Продолжительность анимации исчезновения
     const tileDelay = 500; // Интервал между анимациями плиток
 
-    // Рассчитанное время блокировки кнопки без дополнительной задержки
     const buttonInactiveDuration = (tilesToOpen - 1) * tileDelay + tileFadeDuration; 
 
     let openedTiles = new Set();  // Хранит уже открытые плитки
@@ -54,7 +53,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (availableTiles.length < tilesToOpen) {
             console.warn("Недостаточно плиток для открытия, сбрасываем состояние.");
-            resetTiles();
             openedTiles.clear();
             return null;
         }
@@ -75,9 +73,6 @@ document.addEventListener("DOMContentLoaded", () => {
     // Основной обработчик кнопки
     getSignalButton.addEventListener("click", () => {
         toggleButtonState(true); // Блокируем кнопку
-
-        // Сбрасываем плитки и звезды
-        resetTiles();
 
         const openedTilesThisRound = getRandomTiles();
         if (!openedTilesThisRound) {
@@ -100,11 +95,17 @@ document.addEventListener("DOMContentLoaded", () => {
                 star.classList.add("show-star");
 
                 if (i === tilesToOpen - 1) {
+                    // После завершения анимаций плиток
                     setTimeout(() => {
                         toggleButtonState(false); // Активируем кнопку после завершения всех анимаций
                     }, buttonInactiveDuration);
                 }
             }, i * tileDelay);
         });
+
+        // Теперь сбрасываем плитки и звезды только после того, как все действия завершены
+        setTimeout(() => {
+            resetTiles(); // Сбрасываем плитки и звезды после всех анимаций
+        }, buttonInactiveDuration + 500); // + 500ms для плавного завершения
     });
 });
