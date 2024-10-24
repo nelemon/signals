@@ -70,7 +70,7 @@ button {
     border: none;
     padding: 0;
     cursor: pointer;
-    margin-top: 50px; /* Сдвигаем кнопку вниз на 50px */
+    margin-top: 130px; /* Сдвигаем кнопку вниз на 130px (50px + 80px) */
 }
 
 /* Стили для изображения кнопки */
