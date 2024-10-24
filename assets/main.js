@@ -28,6 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Хранит уже открытые плитки
     let openedTiles = new Set();
+    let tilesOpening = false; // Флаг для отслеживания процесса открытия плиток
 
     // Функция сброса состояния плиток и звезд
     function resetTiles() {
@@ -78,43 +79,46 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Обработчик события нажатия на кнопку
     getSignalButton.addEventListener("click", () => {
+        // Если плитки уже открываются, блокируем дальнейшие действия
+        if (tilesOpening) return;
+
         resetTiles(); // Сбрасываем состояние плиток и звезд
         toggleButtonState(true); // Блокируем кнопку
+        tilesOpening = true; // Устанавливаем флаг для блокировки повторного нажатия
 
-        // Добавляем задержку перед началом открытия плиток
-        setTimeout(() => {
-            const openedTilesThisRound = getRandomTiles();
+        const openedTilesThisRound = getRandomTiles();
 
-            // Если недостаточно плиток, просто возвращаем
-            if (!openedTilesThisRound) {
-                toggleButtonState(false); // Активируем кнопку
-                return;
-            }
+        // Если недостаточно плиток, просто возвращаем
+        if (!openedTilesThisRound) {
+            toggleButtonState(false); // Активируем кнопку
+            tilesOpening = false; // Разрешаем дальнейшие действия
+            return;
+        }
 
-            // Обновляем список открытых плиток
-            openedTiles = new Set([...openedTiles, ...openedTilesThisRound]);
+        // Обновляем список открытых плиток
+        openedTiles = new Set([...openedTiles, ...openedTilesThisRound]);
 
-            console.log("Открытые плитки:", openedTilesThisRound); // Отладочное сообщение
+        console.log("Открытые плитки:", openedTilesThisRound); // Отладочное сообщение
 
-            // Анимация исчезновения плиток и появления звезд
-            openedTilesThisRound.forEach((tileIndex, i) => {
-                setTimeout(() => {
-                    const tile = tileGrid.children[tileIndex];
-                    tile.classList.add("fade-out"); // Запускаем анимацию исчезновения
+        // Анимация исчезновения плиток и появления звезд
+        openedTilesThisRound.forEach((tileIndex, i) => {
+            setTimeout(() => {
+                const tile = tileGrid.children[tileIndex];
+                tile.classList.add("fade-out"); // Запускаем анимацию исчезновения
 
-                    // Получаем звезду с тем же индексом
-                    const star = starsContainer.children[tileIndex];
-                    star.style.opacity = 1; // Показываем звезду
-                    star.classList.add("show-star"); // Добавляем класс для анимации появления звезды
+                // Получаем звезду с тем же индексом
+                const star = starsContainer.children[tileIndex];
+                star.style.opacity = 1; // Показываем звезду
+                star.classList.add("show-star"); // Добавляем класс для анимации появления звезды
 
-                    if (i === tilesToOpen - 1) {
-                        // После завершения последней анимации ждем 2 секунды перед активацией кнопки
-                        setTimeout(() => {
-                            toggleButtonState(false); // Активируем кнопку
-                        }, buttonInactiveDuration);
-                    }
-                }, i * tileDelay); // Интервал между анимациями плиток
-            });
-        }, 200); // Добавляем задержку в 200 мс перед открытием плиток после сброса
+                if (i === tilesToOpen - 1) {
+                    // После завершения последней анимации ждем 2 секунды перед активацией кнопки
+                    setTimeout(() => {
+                        toggleButtonState(false); // Активируем кнопку
+                        tilesOpening = false; // Разрешаем дальнейшие действия
+                    }, buttonInactiveDuration);
+                }
+            }, i * tileDelay); // Интервал между анимациями плиток
+        });
     });
 });
