@@ -91,7 +91,7 @@ button:disabled img {
 }
 
 .show-star {
-    animation: fadeIn 1s forwards; /* Анимация появления */
+    animation: fadeIn 0.5s forwards; /* Уменьшенная продолжительность анимации до 0.5 секунд */
 }
 
 /* Анимация плавного исчезновения */
@@ -101,5 +101,5 @@ button:disabled img {
 }
 
 .fade-out {
-    animation: fadeOut 1s forwards; /* Анимация исчезновения */
+    animation: fadeOut 0.5s forwards; /* Уменьшенная продолжительность анимации до 0.5 секунд */
 }
