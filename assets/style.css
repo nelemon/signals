@@ -1,5 +1,5 @@
 body {
-    background-color: #0D0924; /* Темно-синий/фиолетовый цвет */
+    background-color: #0D0924; /* Темный фон */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -28,16 +28,16 @@ body {
 
 .grid {
     display: grid;
-    grid-template-columns: repeat(5, 45px); /* Уменьшаем плитки до 45px */
-    grid-template-rows: repeat(5, 45px); /* Уменьшаем плитки до 45px */
-    gap: 8px; /* Увеличиваем интервал между плитками */
+    grid-template-columns: repeat(5, 45px); /* Уменьшенные плитки до 45px */
+    grid-template-rows: repeat(5, 45px); /* Уменьшенные плитки до 45px */
+    gap: 8px; /* Увеличенный интервал между плитками */
     margin-bottom: 20px; /* Отступ снизу */
 }
 
 .tile {
     position: relative; /* Позиционирование для звезды */
-    width: 45px; /* Уменьшаем плитки до 45px */
-    height: 45px; /* Уменьшаем плитки до 45px */
+    width: 45px; /* Уменьшенные плитки до 45px */
+    height: 45px; /* Уменьшенные плитки до 45px */
     background: url('/signals/assets/plitka.png') no-repeat center center / cover;
     cursor: pointer;
 }
@@ -52,16 +52,16 @@ body {
     left: 0;
 }
 
-/* Уменьшенные звезды до 30px */
+/* Уменьшенные звезды до 32px */
 .star {
-    width: 30px; /* Уменьшаем звезды до 30px */
-    height: 30px; /* Уменьшаем звезды до 30px */
+    width: 32px; /* Уменьшаем звезды до 32px */
+    height: 32px; /* Уменьшаем звезды до 32px */
     background: url('/signals/assets/star.png') no-repeat center center / cover;
     opacity: 0; /* Скрываем звезду по умолчанию */
     transition: opacity 1s; /* Плавный переход для появления звезды */
     position: relative;
-    top: 7.5px; /* Сдвиг, чтобы звезда оставалась по центру */
-    left: 7.5px; /* Сдвиг, чтобы звезда оставалась по центру */
+    top: 6.5px; /* Сдвиг, чтобы звезда оставалась по центру */
+    left: 6.5px; /* Сдвиг, чтобы звезда оставалась по центру */
 }
 
 /* Стили для кнопки с изображением */
