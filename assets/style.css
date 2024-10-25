@@ -71,7 +71,7 @@ button {
     border: none;
     padding: 0;
     cursor: pointer;
-    margin-top: 400px; /* Сдвигаем кнопку вниз */
+    margin-top: 350px; /* Подняли кнопку на 50px, уменьшив значение с 400px до 350px */
     z-index: 2; /* Помещаем кнопку выше всех остальных элементов */
 }
 
